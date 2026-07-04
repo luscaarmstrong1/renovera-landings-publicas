@@ -1,159 +1,65 @@
-﻿# Renovera Portal Institucional
+# Kairós Landings Públicas
 
-Portal institucional da Renovera, criado como hub central da marca e preservando as landing pages comerciais ja publicadas.
+## Objetivo do projeto
 
-## Stack
+Monorepo de landings públicas para linhas de atuação em energia, projetos elétricos, solar, consultoria e eletropostos.
 
-- React;
-- TypeScript;
-- Vite;
-- CSS por aplicacao;
-- npm workspaces;
-- GitHub Pages via GitHub Actions.
+## Problema que resolve
 
-## Estrutura
+Agrupa páginas publicáveis para comunicação técnica e comercial de diferentes frentes do portfólio.
 
-```txt
-apps/
-  portal/        # Site institucional principal
-  design/        # Landing de consultoria regulatoria
-  consultoria/   # Landing de projetos eletricos
-  solar/         # Landing de energia solar
-  eletroposto/   # Landing de eletropostos
-scripts/
-  build-apps.mjs
-  compose-dist.mjs
-  serve-dist.mjs
-```
+## Demonstração visual
 
-## Assets visuais do portal
+![Screenshot desktop](docs/screenshots/home-desktop.png)
 
-Os assets historicos do site antigo ficam em:
+![Screenshot mobile](docs/screenshots/home-mobile.png)
 
-```txt
-apps/portal/public/assets/renovera/
-```
+## Tecnologias utilizadas
 
-Arquivos usados no portal:
+- Node.js
+- npm workspaces
+- Vite
+- TypeScript
+- GitHub Pages
 
-- `fachada-renovera.jpg`: hero da Home;
-- `blog-aterramento.jpg`: Energia Solar, desafios e solucoes;
-- `blog-direitos-concessionaria.jpg`: Consultoria Regulatoria;
-- `blog-nova-regulamentacao.jpg`: blog legado da Home;
-- `blog-6-duvidas.jpg`: artigo principal de Insights;
-- `about1.png`: apoio visual para Eletropostos e energia;
-- `digital-text.png`: textura tecnica no hero, menu e rodape;
-- `logo.png` e `logo-icon-fill.png`: referencias historicas preservadas.
-- `parceiros/logo-1.png` a `parceiros/logo-13.png`: distribuidores e marcas parceiras.
+## Recursos principais
 
-A logo oficial em uso no header, hero lateral e rodape vem dos arquivos historicos `logo.png` e `logo-icon-fill.png`.
+- Monorepo com apps em `apps/*`
+- Scripts de build compostos
+- Portal público
+- Publicação estática
 
-## Rotas do portal
+## Acesso público
 
-- `/`
-- `/solucoes`
-- `/segmentos`
-- `/cases`
-- `/insights`
-- `/sobre`
-- `/contato`
-- `/politica-de-privacidade`
-- `/termos-de-uso`
-- `/canal-de-etica`
+GitHub Pages: https://luscaarmstrong1.github.io/renovera-landings-publicas/
 
-## Landing pages externas usadas nos CTAs
+## Como executar localmente
 
-- Energia Solar: `https://luscaarmstrong1.github.io/renovera-energia-solar/`
-- Consultoria Regulatoria: `https://luscaarmstrong1.github.io/renovera-consultoria-regulatoria/`
-- Projetos Eletricos: `https://luscaarmstrong1.github.io/renovera-projetos-eletricos/`
-- Eletropostos: `https://luscaarmstrong1.github.io/renovera-eletroposto/`
-
-## Instalar dependencias
+Pré-requisitos: Node.js compatível com o projeto e o gerenciador indicado pelo lockfile (`package-lock.json` ou `pnpm-lock.yaml`).
 
 ```bash
 npm install
-```
-
-## Rodar localmente
-
-Portal institucional:
-
-```bash
-npm run dev
-```
-
-URL local:
-
-```txt
-http://127.0.0.1:5500/
-```
-
-Landings individuais:
-
-```bash
-npm run dev:design
-npm run dev:consultoria
-npm run dev:solar
-npm run dev:eletroposto
-```
-
-## Build
-
-```bash
 npm run build
 ```
 
-O build final e gerado em `dist/`. Para testar o build composto:
+Quando houver scripts específicos no `package.json`, use também `npm run dev`, `npm run test`, `npm run lint` ou os comandos equivalentes documentados no próprio arquivo.
 
-```bash
-npm run preview
-```
+## Estrutura do projeto
 
-URL do preview:
+- `src/`, `app/` ou `apps/`: código da interface, conforme o framework do repositório.
+- `public/`: assets estáticos publicados com a aplicação.
+- `docs/screenshots/`: capturas reais da página publicada.
+- `.github/workflows/`: automações de build/deploy quando presentes.
+- `scripts/`: rotinas auxiliares de build, auditoria ou validação quando presentes.
 
-```txt
-http://127.0.0.1:4173/
-```
+## Limitações e avisos técnicos
 
-## Publicacao no GitHub Pages
+Este repositório é uma demonstração técnica ou produto em evolução. O conteúdo não substitui projeto executivo, estudo de conexão, validação regulatória, parecer técnico, proposta comercial definitiva ou análise jurídica. Funcionalidades, cálculos e textos devem ser revisados antes de uso profissional.
 
-O workflow `.github/workflows/deploy-pages.yml` executa:
+## Privacidade e segurança
 
-```bash
-npm ci
-npm run build
-```
+Não inclua tokens, chaves, credenciais, dados pessoais sensíveis ou arquivos `.env` em commits. Em demonstrações públicas, use dados fictícios ou anonimizados. Quando houver `.env.example`, trate-o apenas como referência de configuração.
 
-Depois publica a pasta `dist/`.
+## Status
 
-Para publicar com prefixo de repositorio:
-
-```bash
-PUBLIC_BASE_PREFIX=/renovera-landings-publicas npm run build
-```
-
-Link publico previsto:
-
-```txt
-https://luscaarmstrong1.github.io/renovera-landings-publicas/
-```
-
-## Conteudo pendente para evolucao
-
-Os objetos de cases e artigos iniciais ficam em `apps/portal/src/App.tsx`. Eles usam conteudo institucional neutro para evitar numeros, clientes, certificacoes ou resultados inventados. Ao receber cases e artigos reais, atualize esses objetos com os dados validados.
-
-
-## Portal unificado
-
-As rotas principais usam um unico header superior, rodape global claro, WhatsApp flutuante e botao de voltar ao topo.
-
-Rotas principais:
-
-- `/`: Inicio;
-- `/solucoes`: Solucoes;
-- `/cases`: Cases;
-- `/insights`: Blog;
-- `/sobre`: A Renovera;
-- `/contato`: Contato.
-
-Os HTMLs em `apps/portal/public/legacy-pages/` sao usados como fonte de conteudo para Blog, A Renovera, Contato e artigos, sem publicar a barra lateral antiga.
+Monorepo de demonstrações públicas em evolução.
