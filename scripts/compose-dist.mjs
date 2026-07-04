@@ -1,4 +1,4 @@
-import { cp, mkdir, rm, writeFile } from "node:fs/promises";
+﻿import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -96,7 +96,7 @@ const sitemapRoutes = [
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemapRoutes.map((route) => `<url><loc>https://renovera1.github.io${publicBase}/${route}</loc></url>`).join("\n  ")}
+  ${sitemapRoutes.map((route) => `<url><loc>https://luscaarmstrong1.github.io${publicBase}/${route}</loc></url>`).join("\n  ")}
 </urlset>`;
 
 await writeFile(path.join(dist, "sitemap.xml"), sitemap, "utf8");

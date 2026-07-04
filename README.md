@@ -1,4 +1,4 @@
-# Renovera Portal Institucional
+﻿# Renovera Portal Institucional
 
 Portal institucional da Renovera, criado como hub central da marca e preservando as landing pages comerciais ja publicadas.
 
@@ -63,10 +63,10 @@ A logo oficial em uso no header, hero lateral e rodape vem dos arquivos historic
 
 ## Landing pages externas usadas nos CTAs
 
-- Energia Solar: `https://renovera1.github.io/renovera-energia-solar/`
-- Consultoria Regulatoria: `https://renovera1.github.io/renovera-consultoria-regulatoria/`
-- Projetos Eletricos: `https://renovera1.github.io/renovera-projetos-eletricos/`
-- Eletropostos: `https://renovera1.github.io/renovera-eletroposto/`
+- Energia Solar: `https://luscaarmstrong1.github.io/renovera-energia-solar/`
+- Consultoria Regulatoria: `https://luscaarmstrong1.github.io/renovera-consultoria-regulatoria/`
+- Projetos Eletricos: `https://luscaarmstrong1.github.io/renovera-projetos-eletricos/`
+- Eletropostos: `https://luscaarmstrong1.github.io/renovera-eletroposto/`
 
 ## Instalar dependencias
 
@@ -135,7 +135,7 @@ PUBLIC_BASE_PREFIX=/renovera-landings-publicas npm run build
 Link publico previsto:
 
 ```txt
-https://renovera1.github.io/renovera-landings-publicas/
+https://luscaarmstrong1.github.io/renovera-landings-publicas/
 ```
 
 ## Conteudo pendente para evolucao
