@@ -1,3 +1,5 @@
+@import "../../../shared/renovera-system.css";
+
 :root {
   --bg: #f2f7f2;
   --bg-soft: #edf5ef;
@@ -17,9 +19,9 @@
   --danger: #a85b00;
   --shadow: 0 20px 45px rgba(4, 52, 28, 0.08);
   --container: 1280px;
-  --radius-lg: 28px;
-  --radius-md: 20px;
-  --radius-sm: 14px;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
 }
 
 * {
@@ -2089,5 +2091,74 @@ a {
     width: 142px;
     right: 16px;
     bottom: 18px;
+  }
+}
+
+/* Product signature: field engineering with a live generation overlay. */
+.solar-panel-wrap {
+  min-height: 570px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #183d2b;
+  box-shadow: 0 28px 60px rgba(0, 35, 20, 0.22);
+}
+
+.solarHeroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+}
+
+.solar-panel-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 35, 20, 0.04) 30%, rgba(0, 35, 20, 0.84) 100%);
+  pointer-events: none;
+}
+
+.solar-panel-wrap .solar-dashboard {
+  top: auto;
+  right: 18px;
+  bottom: 18px;
+  left: auto;
+  z-index: 2;
+  width: min(72%, 430px);
+  min-height: 0;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: rgba(250, 252, 249, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.solar-panel-wrap .solar-farm-art {
+  height: 205px;
+  border-radius: var(--radius-md);
+}
+
+.solar-panel-wrap .hero-side-card {
+  z-index: 3;
+  top: 18px;
+  right: 18px;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 680px) {
+  .solar-panel-wrap {
+    min-height: 610px;
+  }
+
+  .solar-panel-wrap .solar-dashboard {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+  }
+
+  .solar-panel-wrap .hero-side-card {
+    top: 12px;
+    right: 12px;
   }
 }

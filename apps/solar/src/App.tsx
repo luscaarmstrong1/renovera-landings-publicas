@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AdminEditor from "./AdminEditor";
 import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
+import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
 
@@ -286,10 +287,14 @@ function App() {
   }
 
   const whatsappNumber = onlyNumbers(siteConfig.whatsappNumber || WHATSAPP_NUMBER);
-  const whatsappMessage = encodeURIComponent(
-    `Olá, quero uma análise para um projeto fotovoltaico com base nesta simulação:\n\n${summary}`
+  const whatsappLink = buildWhatsappUrl(
+    `Olá, quero uma análise para um projeto fotovoltaico com base nesta simulação:\n\n${summary}`,
+    whatsappNumber
   );
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const genericWhatsappLink = buildWhatsappUrl(
+    "Olá, quero avaliar um projeto de energia solar com a Renovera.",
+    whatsappNumber
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -349,7 +354,13 @@ function App() {
     if (validation.length > 0) {
       event.preventDefault();
       alert(validation.join("\n"));
+      return;
     }
+    trackEvent("generate_lead", { product: "solar", channel: "whatsapp", mode, uf });
+  };
+
+  const trackGenericWhatsapp = (placement: string) => {
+    trackEvent("contact", { product: "solar", channel: "whatsapp", placement });
   };
 
   const copySummary = async () => {
@@ -360,6 +371,7 @@ function App() {
 
     try {
       await navigator.clipboard.writeText(summary);
+      trackEvent("select_content", { product: "solar", content_type: "simulation_summary", action: "copy" });
       alert("Resumo copiado para a área de transferência.");
     } catch {
       alert("Não foi possível copiar automaticamente. Selecione o resumo manualmente.");
@@ -398,10 +410,10 @@ function App() {
               <p className="hero-description">{siteConfig.hero.subtitle}</p>
 
               <div className="hero-actions">
-                <a className="btn btn-primary" href="#calculadora">
+                <a className="btn btn-primary" href="#calculadora" onClick={() => trackEvent("select_content", { product: "solar", content_type: "solar_calculator", placement: "hero" })}>
                   {siteConfig.hero.primaryButton}
                 </a>
-                <a className="btn btn-secondary" href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noreferrer">
+                <a className="btn btn-secondary" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("hero")} target="_blank" rel="noreferrer">
                   {siteConfig.hero.secondaryButton}
                 </a>
               </div>
@@ -417,6 +429,14 @@ function App() {
             </div>
 
             <div className="hero-panel-wrap solar-panel-wrap" aria-hidden="true">
+              <img
+                className="solarHeroImage"
+                src={`${import.meta.env.BASE_URL}solar-engineering-hero.webp`}
+                alt=""
+                width="1536"
+                height="1024"
+                fetchPriority="high"
+              />
               <div className="solar-dashboard refined-dashboard">
                 <div className="hero-panel-top refined-top">
                   <span className="hero-os">Renovera Solar</span>
@@ -516,18 +536,18 @@ function App() {
 
                 <div className="input-grid">
                   <div className="input-group">
-                    <label>Nome</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Seu nome" />
+                    <label htmlFor="solar-name">Nome</label>
+                    <input id="solar-name" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Seu nome" />
                   </div>
 
                   <div className="input-group">
-                    <label>Telefone</label>
-                    <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(19) 99999-9999" inputMode="tel" />
+                    <label htmlFor="solar-phone">Telefone</label>
+                    <input id="solar-phone" name="phone" type="tel" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(19) 99999-9999" inputMode="tel" />
                   </div>
 
                   <div className="input-group">
-                    <label>UF</label>
-                    <select value={uf} onChange={(e) => handleUfChange(e.target.value as UfKey)}>
+                    <label htmlFor="solar-uf">UF</label>
+                    <select id="solar-uf" name="uf" value={uf} onChange={(e) => handleUfChange(e.target.value as UfKey)}>
                       {(Object.keys(hspPorUf) as UfKey[]).map((item) => (
                         <option key={item} value={item}>{item}</option>
                       ))}
@@ -535,8 +555,8 @@ function App() {
                   </div>
 
                   <div className="input-group">
-                    <label>Cidade</label>
-                    <select value={city} onChange={(e) => setCity(e.target.value)} disabled={citiesLoading}>
+                    <label htmlFor="solar-city">Cidade</label>
+                    <select id="solar-city" name="city" value={city} onChange={(e) => setCity(e.target.value)} disabled={citiesLoading}>
                       {cityOptions.map((item) => (
                         <option key={item} value={item}>{item}</option>
                       ))}
@@ -546,34 +566,34 @@ function App() {
 
                   {city === "Outra cidade" && (
                     <div className="input-group full">
-                      <label>Informe a cidade</label>
-                      <input value={otherCity} onChange={(e) => setOtherCity(e.target.value)} placeholder="Digite o nome da cidade" />
+                      <label htmlFor="solar-other-city">Informe a cidade</label>
+                      <input id="solar-other-city" name="otherCity" value={otherCity} onChange={(e) => setOtherCity(e.target.value)} placeholder="Digite o nome da cidade" />
                     </div>
                   )}
 
                   {mode === "consumo" ? (
                     <div className="input-group">
-                      <label>Consumo médio mensal</label>
-                      <input type="number" min={0} step={10} value={monthlyConsumption} onChange={(e) => setMonthlyConsumption(Number(e.target.value))} />
+                      <label htmlFor="solar-consumption">Consumo médio mensal</label>
+                      <input id="solar-consumption" name="monthlyConsumption" type="number" min={0} step={10} value={monthlyConsumption} onChange={(e) => setMonthlyConsumption(Number(e.target.value))} />
                       <small>kWh/mês</small>
                     </div>
                   ) : (
                     <div className="input-group">
-                      <label>Potência instalada desejada</label>
-                      <input type="number" min={0} step={0.1} value={installedPower} onChange={(e) => setInstalledPower(Number(e.target.value))} />
+                      <label htmlFor="solar-power">Potência instalada desejada</label>
+                      <input id="solar-power" name="installedPower" type="number" min={0} step={0.1} value={installedPower} onChange={(e) => setInstalledPower(Number(e.target.value))} />
                       <small>kWp</small>
                     </div>
                   )}
 
                   <div className="input-group">
-                    <label>Tarifa de energia</label>
-                    <input type="number" min={0} step={0.01} value={tariff} onChange={(e) => setTariff(Number(e.target.value))} />
+                    <label htmlFor="solar-tariff">Tarifa de energia</label>
+                    <input id="solar-tariff" name="tariff" type="number" min={0} step={0.01} value={tariff} onChange={(e) => setTariff(Number(e.target.value))} />
                     <small>R$/kWh</small>
                   </div>
 
                   <div className="input-group">
-                    <label>Tipo de telhado/local</label>
-                    <select value={roofType} onChange={(e) => setRoofType(e.target.value as RoofType)}>
+                    <label htmlFor="solar-roof">Tipo de telhado/local</label>
+                    <select id="solar-roof" name="roofType" value={roofType} onChange={(e) => setRoofType(e.target.value as RoofType)}>
                       <option>Cerâmica</option>
                       <option>Solo</option>
                       <option>Fibrocimento</option>
@@ -583,8 +603,8 @@ function App() {
                   </div>
 
                   <div className="input-group">
-                    <label>Tensão</label>
-                    <select value={tension} onChange={(e) => setTension(e.target.value as TensionType)}>
+                    <label htmlFor="solar-tension">Tensão</label>
+                    <select id="solar-tension" name="tension" value={tension} onChange={(e) => setTension(e.target.value as TensionType)}>
                       <option>Monofásico 220 V</option>
                       <option>Trifásico 220 V</option>
                       <option>Trifásico 380 V</option>
@@ -780,7 +800,7 @@ function App() {
           <div className="footer-col">
             <h4>Contato</h4>
             <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-            <a href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noreferrer">WhatsApp comercial</a>
+            <a href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("footer")} target="_blank" rel="noreferrer">WhatsApp comercial</a>
           </div>
 
           <div className="footer-col">
@@ -795,7 +815,7 @@ function App() {
       </footer>
 
       {siteConfig.visual.showFloatingWhatsapp && (
-        <a className="whatsapp-float" href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
+        <a className="whatsapp-float" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("floating_button")} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
           <WhatsAppIcon />
         </a>
       )}
