@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import LiveEditor from "./LiveEditor";
+import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
 
-const whatsappLink =
-  "https://wa.me/5500000000000?text=Ol%C3%A1%2C%20quero%20avaliar%20um%20projeto%20de%20eletroposto%20com%20a%20Renovera.";
+const whatsappLink = buildWhatsappUrl(
+  "Olá, quero avaliar um projeto de eletroposto com a Renovera."
+);
 
 function WhatsAppIcon() {
   return (
@@ -67,6 +69,27 @@ function App() {
     };
   }, [chargers, sessions, averageKwh, salePrice, energyCost, investment]);
 
+  const simulationWhatsappLink = buildWhatsappUrl([
+    "Olá, simulei um eletroposto no site da Renovera e quero validar o projeto.",
+    "",
+    `Carregadores: ${chargers}`,
+    `Sessões por dia: ${sessions}`,
+    `Energia média por sessão: ${averageKwh} kWh`,
+    `Preço de venda: ${formatCurrencyDecimal(salePrice)}/kWh`,
+    `Investimento estimado: ${formatCurrency(investment)}`,
+    `Receita líquida mensal estimada: ${formatCurrency(result.netRevenue)}`,
+    `Payback estimado: ${result.payback.toFixed(1)} meses`
+  ].join("\n"));
+
+  const trackWhatsapp = (placement: string, href = whatsappLink) => {
+    trackEvent("contact", {
+      product: "eletroposto",
+      channel: "whatsapp",
+      placement,
+      has_simulation: href === simulationWhatsappLink
+    });
+  };
+
   return (
     <div className="page">
       <header className="header">
@@ -83,7 +106,7 @@ function App() {
             <a href="#duvidas">Dúvidas</a>
           </nav>
 
-          <a className="headerButton" href={whatsappLink} target="_blank">
+          <a className="headerButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("header")}>
             Solicitar estudo
           </a>
         </div>
@@ -105,10 +128,10 @@ function App() {
               </p>
 
               <div className="heroActions">
-                <a className="primaryButton" href="#roi">
+                <a className="primaryButton" href="#roi" onClick={() => trackEvent("select_content", { product: "eletroposto", content_type: "roi_simulator", placement: "hero" })}>
                   Simular retorno financeiro
                 </a>
-                <a className="secondaryButton" href={whatsappLink} target="_blank">
+                <a className="secondaryButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("hero")}>
                   Falar com a Renovera
                 </a>
               </div>
@@ -130,6 +153,14 @@ function App() {
             </div>
 
             <div className="heroVisual">
+              <img
+                className="evHeroImage"
+                src={`${import.meta.env.BASE_URL}ev-charging-hero.webp`}
+                alt="Veículo elétrico conectado a um carregador rápido"
+                width="1536"
+                height="1024"
+                fetchPriority="high"
+              />
               <div className="dashboardCard">
                 <div className="dashboardTop">
                   <span>Renovera Energy Hub</span>
@@ -520,7 +551,7 @@ function App() {
               dimensionar a infraestrutura e indicar a melhor estratégia para o
               seu eletroposto.
             </p>
-            <a className="primaryButton" href={whatsappLink} target="_blank">
+            <a className="primaryButton" href={simulationWhatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("final_cta", simulationWhatsappLink)}>
               Solicitar análise do projeto
             </a>
           </div>
@@ -547,7 +578,7 @@ function App() {
 
           <div>
             <h4>Contato</h4>
-            <a href={whatsappLink} target="_blank">
+            <a href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("footer")}>
               WhatsApp comercial
             </a>
             <a href="mailto:contato@renovera.com.br">contato@renovera.com.br</a>
@@ -569,7 +600,7 @@ function App() {
         </div>
       </footer>
 
-      <a className="whatsappFloat" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp">
+      <a className="whatsappFloat" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp" onClick={() => trackWhatsapp("floating_button")}>
         <WhatsAppIcon />
       </a>
       <LiveEditor namespace="renovera-eletroposto" />
@@ -600,6 +631,7 @@ function Control({
   currency,
   money
 }: ControlProps) {
+  const id = useId();
   const progress = ((value - min) / (max - min)) * 100;
 
   let displayValue = `${value} ${suffix}`;
@@ -615,11 +647,14 @@ function Control({
   return (
     <div className="control">
       <div className="controlTop">
-        <label>{label}</label>
+        <label htmlFor={id}>{label}</label>
         <strong>{displayValue}</strong>
       </div>
 
       <input
+        id={id}
+        name={id}
+        aria-label={label}
         type="range"
         min={min}
         max={max}
