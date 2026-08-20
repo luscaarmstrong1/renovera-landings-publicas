@@ -1,3 +1,5 @@
+@import "../../../shared/renovera-system.css";
+
 :root {
   --bg: #f2f7f2;
   --bg-soft: #edf5ef;
@@ -24,10 +26,10 @@
   --shadow-strong: 0 30px 70px rgba(0, 30, 15, 0.18);
   --gold-shadow: 0 12px 30px rgba(228, 183, 42, 0.28);
   --container: 1280px;
-  --radius-xl: 32px;
-  --radius-lg: 28px;
-  --radius-md: 20px;
-  --radius-sm: 14px;
+  --radius-xl: 8px;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
 }
 
 * { box-sizing: border-box; }
@@ -763,5 +765,62 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
   .live-editor-panel {
     left: 12px;
     bottom: 82px;
+  }
+}
+
+/* Product signature: technical dossier layered over field engineering. */
+.heroVisual {
+  min-height: 560px;
+  align-items: end;
+  justify-items: end;
+  isolation: isolate;
+}
+
+.regulatoryHeroImage {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  filter: saturate(0.78) contrast(1.05);
+}
+
+.heroVisual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(90deg, rgba(0, 43, 24, 0.08), rgba(0, 43, 24, 0.78));
+}
+
+.heroVisual .regCard {
+  width: min(88%, 455px);
+  margin: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  background: rgba(250, 252, 249, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.heroVisual .gridMap {
+  height: 180px;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 640px) {
+  .heroVisual {
+    min-height: 590px;
+    align-items: end;
+  }
+
+  .heroVisual .regCard {
+    width: calc(100% - 24px);
+    margin: 12px;
+  }
+
+  .heroVisual .gridMap {
+    display: none;
   }
 }

@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
 import LiveEditor from "./LiveEditor";
+import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
 
-const whatsappLink =
-  "https://wa.me/5500000000000?text=Ol%C3%A1%2C%20quero%20uma%20an%C3%A1lise%20regulat%C3%B3ria%20da%20Renovera%20sobre%20um%20caso%20de%20energia.";
+const whatsappLink = buildWhatsappUrl(
+  "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
+);
 
 const services = [
   {
@@ -80,28 +82,36 @@ function App() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitted(true);
-
-    const payload = {
+    trackEvent("generate_lead", {
+      product: "regulatoria",
+      channel: "whatsapp",
       utility,
       restriction,
-      power,
-      email,
-      cnpj,
-      phone,
-      diagnostic,
-      createdAt: new Date().toISOString()
-    };
+      diagnostic_score: diagnostic.score
+    });
 
-    console.log("Triagem regulatória Renovera", payload);
+    const message = [
+      "Olá, quero solicitar uma análise regulatória da Renovera.",
+      "",
+      `Concessionária: ${utility}`,
+      `Restrição: ${restriction}`,
+      `Potência/demanda: ${power} kW`,
+      `Diagnóstico preliminar: ${diagnostic.score}/100 (${diagnostic.level})`,
+      `E-mail: ${email}`,
+      `CNPJ: ${cnpj}`,
+      `Telefone: ${phone}`
+    ].join("\n");
+
+    window.open(buildWhatsappUrl(message), "_blank", "noopener,noreferrer");
   }
 
   return (
     <div className="page">
       <header className="header">
         <div className="container headerInner">
-          <a href="#inicio" className="brand" aria-label="Renovera Consultoria Regulatória">
+          <a href="#inicio" className="brand" aria-label="Renovera Regulatória">
             <img src="/logo-renovera.png" alt="Renovera" />
-            <span>Consultoria Regulatória</span>
+            <span>Regulatória</span>
           </a>
 
           <nav className="nav">
@@ -148,7 +158,15 @@ function App() {
               </div>
             </div>
 
-            <div className="heroVisual" aria-label="Interface abstrata de defesa regulatória">
+            <div className="heroVisual" aria-label="Engenharia e documentação para defesa regulatória">
+              <img
+                className="regulatoryHeroImage"
+                src={`${import.meta.env.BASE_URL}regulatory-engineering-hero.webp`}
+                alt="Engenheira analisando documentação técnica do setor elétrico"
+                width="1600"
+                height="917"
+                fetchPriority="high"
+              />
               <div className="regCard">
                 <div className="regTop">
                   <span>Renovera Defense Hub</span>
@@ -218,7 +236,7 @@ function App() {
               <div className="formGrid">
                 <label>
                   Concessionária envolvida
-                  <select value={utility} onChange={(event) => setUtility(event.target.value)}>
+                  <select name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
                     <option>CPFL</option>
                     <option>Neoenergia Elektro</option>
                     <option>Energisa</option>
@@ -229,7 +247,7 @@ function App() {
 
                 <label>
                   Tipo de restrição
-                  <select value={restriction} onChange={(event) => setRestriction(event.target.value)}>
+                  <select name="restriction" value={restriction} onChange={(event) => setRestriction(event.target.value)}>
                     <option>Inversão de Fluxo</option>
                     <option>Reprovação de Padrão</option>
                     <option>Demanda Incompatível</option>
@@ -239,32 +257,32 @@ function App() {
 
                 <label>
                   Potência / demanda do ativo
-                  <input type="number" min="0" step="0.01" value={power} onChange={(event) => setPower(Number(event.target.value))} />
+                  <input name="power" type="number" min="0" step="0.01" value={power} onChange={(event) => setPower(Number(event.target.value))} />
                 </label>
 
                 <label>
                   E-mail corporativo
-                  <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="diretoria@empresa.com.br" required />
+                  <input name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="diretoria@empresa.com.br" required />
                 </label>
 
                 <label>
                   CNPJ
-                  <input type="text" value={cnpj} onChange={(event) => setCnpj(event.target.value)} placeholder="00.000.000/0001-00" required />
+                  <input name="cnpj" type="text" inputMode="numeric" value={cnpj} onChange={(event) => setCnpj(event.target.value)} placeholder="00.000.000/0001-00" required />
                 </label>
 
                 <label>
                   Telefone / WhatsApp
-                  <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="(00) 00000-0000" required />
+                  <input name="phone" type="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="(00) 00000-0000" required />
                 </label>
               </div>
 
               <button className="formButton" type="submit">Solicitar análise de viabilidade jurídica</button>
-              <a className="whatsButton" href={whatsappLink} target="_blank">Prefiro enviar pelo WhatsApp</a>
+              <a className="whatsButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "screening" })}>Prefiro enviar pelo WhatsApp</a>
 
               {submitted && (
                 <div className="successBox">
                   <strong>Triagem registrada.</strong>
-                  <p>Substitua o console.log por integração com WhatsApp, CRM, n8n, Make ou Google Sheets.</p>
+                  <p>Os dados foram organizados e o WhatsApp foi aberto para você concluir o envio à equipe Renovera.</p>
                 </div>
               )}
             </form>
