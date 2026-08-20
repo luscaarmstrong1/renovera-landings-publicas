@@ -431,7 +431,7 @@ function App() {
             <div className="hero-panel-wrap solar-panel-wrap" aria-hidden="true">
               <img
                 className="solarHeroImage"
-                src={`${import.meta.env.BASE_URL}solar-engineering-hero.webp`}
+                src={`${import.meta.env.BASE_URL}solar-hero.webp`}
                 alt=""
                 width="1536"
                 height="1024"
@@ -503,6 +503,23 @@ function App() {
                 <strong>{formatDecimal(result.paybackYears, 1)} anos</strong>
                 <p>considerando a economia mensal projetada</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="visual-proof" aria-labelledby="solar-proof-title">
+          <div className="container visual-proof-grid">
+            <div className="visual-proof-copy">
+              <span className="pill">Engenharia em campo</span>
+              <h2 id="solar-proof-title">A análise começa no local e termina em uma decisão clara.</h2>
+              <p>Levantamento, leitura do telhado e premissas de geração entram no mesmo estudo preliminar, com espaço para validar o próximo passo.</p>
+              <div className="visual-proof-points">
+                <span>Leitura do local</span><span>Dimensionamento</span><span>Plano de implantação</span>
+              </div>
+            </div>
+            <div className="visual-proof-media">
+              <img src={`${import.meta.env.BASE_URL}solar-engineering.webp`} alt="Engenheiro inspecionando paineis solares em uma instalacao urbana" width="1600" height="900" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}solar-planning.webp`} alt="Engenheiro analisando o planejamento de uma planta solar" width="1600" height="900" loading="lazy" />
             </div>
           </div>
         </section>

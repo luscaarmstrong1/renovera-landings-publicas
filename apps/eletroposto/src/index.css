@@ -1035,3 +1035,13 @@ input {
 @media (prefers-reduced-motion: reduce) {
   .heroVisual .dashboardTop strong::before { animation: none; }
 }
+ .visual-proof { padding: 88px 0; background: #071c2c; color: #f5f9fa; }
+.visual-proof-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
+.visual-proof-copy h2 { max-width: 620px; }
+.visual-proof-copy p { max-width: 560px; color: #b8c9d0; }
+.visual-proof-points { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.visual-proof-points span { padding: 8px 12px; border: 1px solid rgba(119, 213, 180, .35); border-radius: 999px; color: #9fe4ca; font-size: .82rem; font-weight: 700; }
+.visual-proof-media { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px; min-height: 270px; }
+.visual-proof-media img { width: 100%; height: 100%; min-height: 270px; object-fit: cover; border-radius: 8px; box-shadow: 0 18px 40px rgba(0, 0, 0, .22); }
+.visual-proof-media img:last-child { margin-top: 38px; }
+@media (max-width: 760px) { .visual-proof { padding: 64px 0; } .visual-proof-grid { grid-template-columns: 1fr; gap: 28px; } .visual-proof-media, .visual-proof-media img { min-height: 210px; } }

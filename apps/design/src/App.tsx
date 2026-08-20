@@ -161,7 +161,7 @@ function App() {
             <div className="heroVisual" aria-label="Engenharia e documentação para defesa regulatória">
               <img
                 className="regulatoryHeroImage"
-                src={`${import.meta.env.BASE_URL}regulatory-engineering-hero.webp`}
+                src={`${import.meta.env.BASE_URL}regulatory-analysis.webp`}
                 alt="Engenheira analisando documentação técnica do setor elétrico"
                 width="1600"
                 height="917"
@@ -208,6 +208,21 @@ function App() {
         </section>
 
 
+
+        <section className="visual-proof" aria-labelledby="regulatory-proof-title">
+          <div className="container visual-proof-grid">
+            <div className="visual-proof-copy">
+              <span className="pill">Evidencia tecnica</span>
+              <h2 id="regulatory-proof-title">Uma defesa forte nasce da leitura conjunta de dados e documentos.</h2>
+              <p>A curadoria visual reforca o trabalho de auditoria, organizacao de evidencias e leitura independente do caso regulatorio.</p>
+              <div className="visual-proof-points"><span>Auditoria documental</span><span>Premissas rastreaveis</span><span>Defesa administrativa</span></div>
+            </div>
+            <div className="visual-proof-media">
+              <img src={`${import.meta.env.BASE_URL}regulatory-defense.webp`} alt="Engenheiro analisando esquemas eletricos para uma defesa tecnica" width="1600" height="900" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}regulatory-field.webp`} alt="Inspecao eletrica com documentacao tecnica em campo" width="1600" height="900" loading="lazy" />
+            </div>
+          </div>
+        </section>
 
         <section className="screening" id="triagem">
           <div className="container screeningGrid">

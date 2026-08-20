@@ -155,7 +155,7 @@ function App() {
             <div className="heroVisual">
               <img
                 className="evHeroImage"
-                src={`${import.meta.env.BASE_URL}ev-charging-hero.webp`}
+                src={`${import.meta.env.BASE_URL}ev-hero.webp`}
                 alt="Veículo elétrico conectado a um carregador rápido"
                 width="1536"
                 height="1024"
@@ -205,6 +205,21 @@ function App() {
                 <strong>11 a 240 kW</strong>
                 <p>para residenciais, empresas e hubs de alta demanda</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="visual-proof visual-proof-dark" aria-labelledby="ev-proof-title">
+          <div className="container visual-proof-grid">
+            <div className="visual-proof-copy">
+              <span className="eyebrow light">Infraestrutura real</span>
+              <h2 id="ev-proof-title">O ponto de recarga precisa funcionar para o fluxo do negócio.</h2>
+              <p>O estudo conecta local, permanência, potência e operação para que o eletroposto seja dimensionado com contexto.</p>
+              <div className="visual-proof-points"><span>Fluxo de veículos</span><span>Potencia adequada</span><span>Operacao sustentavel</span></div>
+            </div>
+            <div className="visual-proof-media">
+              <img src={`${import.meta.env.BASE_URL}ev-operations.webp`} alt="Estacao de carregamento eletrico em operacao" width="1600" height="900" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}ev-site.webp`} alt="Equipe revisando um local de recarga eletrica" width="1600" height="900" loading="lazy" />
             </div>
           </div>
         </section>

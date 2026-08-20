@@ -227,7 +227,7 @@ function App() {
             <div className="hero-visual">
               <img
                 className="projectsHeroImage"
-                src={`${import.meta.env.BASE_URL}electrical-projects-hero.webp`}
+                src={`${import.meta.env.BASE_URL}projects-hero.webp`}
                 alt="Infraestrutura elétrica industrial inspecionada por equipe de engenharia"
                 width="1600"
                 height="1000"
@@ -273,6 +273,21 @@ function App() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="visual-proof" aria-labelledby="projects-proof-title">
+          <div className="container visual-proof-grid">
+            <div className="visual-proof-copy">
+              <span className="pill">Projetos que aprovam</span>
+              <h2 id="projects-proof-title">Do painel elétrico ao protocolo, cada detalhe precisa conversar.</h2>
+              <p>As imagens apoiam a narrativa de campo: projeto, inspeção e interface técnica aparecem como partes do mesmo trabalho.</p>
+              <div className="visual-proof-points"><span>Inspecao de campo</span><span>Projeto executivo</span><span>Interface tecnica</span></div>
+            </div>
+            <div className="visual-proof-media">
+              <img src={`${import.meta.env.BASE_URL}projects-field.webp`} alt="Tecnico junto ao painel de controle industrial" width="1600" height="900" loading="lazy" />
+              <img src={`${import.meta.env.BASE_URL}projects-planning.webp`} alt="Engenheiro analisando um projeto eletrico" width="1600" height="900" loading="lazy" />
             </div>
           </div>
         </section>
