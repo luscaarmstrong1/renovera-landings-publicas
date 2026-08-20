@@ -21,13 +21,14 @@ import {
   X
 } from "lucide-react";
 import LiveEditor from "./LiveEditor";
+import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
 
 const baseMessage =
   "Olá, quero solicitar uma análise técnica para projeto elétrico de baixa, média e alta tensão, subestação, entrada de energia ou ACL.";
 
-const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(baseMessage)}`;
+const whatsappLink = buildWhatsappUrl(baseMessage, WHATSAPP_NUMBER);
 
 function WhatsAppIcon() {
   return (
@@ -170,6 +171,15 @@ function App() {
     };
   }, [demand, parsedDemand]);
 
+  const openLeadModal = (placement: string) => {
+    trackEvent("select_content", { product: "projetos_eletricos", content_type: "lead_modal", placement });
+    setModalOpen(true);
+  };
+
+  const trackWhatsapp = (placement: string) => {
+    trackEvent("contact", { product: "projetos_eletricos", channel: "whatsapp", placement });
+  };
+
   return (
     <div className="page">
       <header className="site-header">
@@ -184,7 +194,7 @@ function App() {
             <a href="#metodo">Método</a>
           </nav>
 
-          <button className="nav-cta" onClick={() => setModalOpen(true)}>
+          <button className="nav-cta" onClick={() => openLeadModal("header")}>
             Solicitar análise
           </button>
         </div>
@@ -203,11 +213,11 @@ function App() {
               </p>
 
               <div className="hero-actions">
-                <button className="btn btn-secondary" onClick={() => setModalOpen(true)}>
+                <button className="btn btn-secondary" onClick={() => openLeadModal("hero")}>
                   Quero destravar minha aprovação
                   <ArrowRight size={18} />
                 </button>
-                <a className="btn btn-primary" href={whatsappLink} target="_blank" rel="noreferrer">
+                <a className="btn btn-primary" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("hero")}>
                   Falar com engenheiro
                   <Phone size={18} />
                 </a>
@@ -215,6 +225,14 @@ function App() {
             </div>
 
             <div className="hero-visual">
+              <img
+                className="projectsHeroImage"
+                src={`${import.meta.env.BASE_URL}electrical-projects-hero.webp`}
+                alt="Infraestrutura elétrica industrial inspecionada por equipe de engenharia"
+                width="1600"
+                height="1000"
+                fetchPriority="high"
+              />
               <div className="engineering-card">
                 <div className="engineering-top">
                   <span>Renovera GridDesk</span>
@@ -294,7 +312,7 @@ function App() {
                     </div>
                     <h3>{service.title}</h3>
                     <p>{service.description}</p>
-                    <button onClick={() => setModalOpen(true)}>
+                    <button onClick={() => openLeadModal(`service_${service.title}`)}>
                       {service.cta}
                       <ChevronRight size={17} />
                     </button>
@@ -320,7 +338,7 @@ function App() {
               <div className="checker-form">
                 <label>
                   <span>1. Selecione a concessionária local</span>
-                  <select value={utility} onChange={(event) => setUtility(event.target.value)}>
+                  <select name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
                     {concessionarias.map((item) => (
                       <option key={item}>{item}</option>
                     ))}
@@ -330,6 +348,7 @@ function App() {
                 <label>
                   <span>2. Demanda contratada ou pretendida em kW</span>
                   <input
+                    name="demand"
                     value={demand}
                     onChange={(event) => setDemand(event.target.value)}
                     placeholder="Ex.: 500"
@@ -353,7 +372,7 @@ function App() {
                   </div>
                 </div>
 
-                <button className="btn btn-secondary full" onClick={() => setModalOpen(true)}>
+                <button className="btn btn-secondary full" onClick={() => openLeadModal("viability_primary")}>
                   Receber diagnóstico técnico preliminar
                   <ArrowRight size={18} />
                 </button>
@@ -368,7 +387,7 @@ function App() {
                   <strong>{viability.label}</strong>
                   <p>{viability.title}</p>
                 </div>
-                <button className="btn btn-outline full" onClick={() => setModalOpen(true)}>
+                <button className="btn btn-outline full" onClick={() => openLeadModal("viability_secondary")}>
                   Solicitar validação completa
                   <Sparkles size={18} />
                 </button>
@@ -386,7 +405,7 @@ function App() {
                 Ideal para empresas com alta demanda, expansão de planta, novas
                 entradas de energia, adequações de subestação ou avaliação de ACL.
               </p>
-              <button className="btn btn-secondary dark-text" onClick={() => setModalOpen(true)}>
+              <button className="btn btn-secondary dark-text" onClick={() => openLeadModal("sectors")}>
                 Quero uma leitura técnica do meu caso
                 <Target size={18} />
               </button>
@@ -413,8 +432,8 @@ function App() {
               <span className="pill">Método Renovera</span>
               <h2>Da dúvida técnica até o protocolo aprovado.</h2>
               <p>
-                A estrutura segue a mesma lógica das landing pages anteriores:
-                autoridade no topo, prova técnica no meio e CTA forte em todas as etapas.
+                Uma condução clara entre levantamento de dados, diagnóstico, projeto,
+                documentação e interface técnica com a concessionária.
               </p>
             </div>
 
@@ -439,7 +458,7 @@ function App() {
               de projeto, proteção, concessionária e regulação.
             </p>
             <div className="final-actions">
-              <button className="btn btn-secondary" onClick={() => setModalOpen(true)}>
+              <button className="btn btn-secondary" onClick={() => openLeadModal("method")}>
                 Quero aprovar minha infraestrutura
                 <Workflow size={18} />
               </button>
@@ -547,17 +566,24 @@ function LeadModal({
       `ACL: ${acl}`
     ].join("\n");
 
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
+    trackEvent("generate_lead", {
+      product: "projetos_eletricos",
+      channel: "whatsapp",
+      utility,
+      acl,
+      demand: demand || "not_informed"
+    });
+    window.open(buildWhatsappUrl(message, WHATSAPP_NUMBER), "_blank", "noopener,noreferrer");
     onClose();
   }
 
   return (
-    <div className="modal-backdrop">
-      <div className="lead-modal">
+    <div className="modal-backdrop" role="presentation">
+      <div className="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
         <div className="modal-head">
           <div>
             <span className="pill small">Análise técnica Renovera</span>
-            <h3>Solicitar diagnóstico de viabilidade</h3>
+            <h3 id="lead-modal-title">Solicitar diagnóstico de viabilidade</h3>
             <p>
               Envie os dados corporativos para uma primeira leitura técnica da
               demanda, concessionária, entrada de energia e escopo regulatório.
@@ -571,19 +597,19 @@ function LeadModal({
         <form className="modal-form" onSubmit={handleSubmit}>
           <label>
             <span>Empresa</span>
-            <input required value={form.empresa} onChange={(event) => updateForm("empresa", event.target.value)} placeholder="Nome da empresa" />
+            <input name="empresa" autoComplete="organization" required value={form.empresa} onChange={(event) => updateForm("empresa", event.target.value)} placeholder="Nome da empresa" />
           </label>
           <label>
             <span>E-mail corporativo</span>
-            <input required type="email" value={form.email} onChange={(event) => updateForm("email", event.target.value)} placeholder="engenharia@empresa.com.br" />
+            <input name="email" autoComplete="email" required type="email" value={form.email} onChange={(event) => updateForm("email", event.target.value)} placeholder="engenharia@empresa.com.br" />
           </label>
           <label>
             <span>CNPJ</span>
-            <input required value={form.cnpj} onChange={(event) => updateForm("cnpj", event.target.value)} placeholder="00.000.000/0000-00" />
+            <input name="cnpj" inputMode="numeric" required value={form.cnpj} onChange={(event) => updateForm("cnpj", event.target.value)} placeholder="00.000.000/0000-00" />
           </label>
           <label>
             <span>Telefone de contato</span>
-            <input required value={form.telefone} onChange={(event) => updateForm("telefone", event.target.value)} placeholder="(00) 00000-0000" />
+            <input name="telefone" type="tel" autoComplete="tel" required value={form.telefone} onChange={(event) => updateForm("telefone", event.target.value)} placeholder="(00) 00000-0000" />
           </label>
 
           <div className="modal-summary">
