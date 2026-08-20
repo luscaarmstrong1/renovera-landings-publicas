@@ -383,7 +383,7 @@ function App() {
       <header className="site-header">
         <div className="container nav">
           <a href="#top" className="brand" aria-label="Renovera">
-            <img src="/logo-renovera.png" alt="Renovera" />
+            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
           </a>
 
           <nav className="nav-links" aria-label="Menu principal">
@@ -785,7 +785,7 @@ function App() {
       <footer className="footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <img src="/logo-renovera.png" alt="Renovera" />
+            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
             <p>{siteConfig.footer.description}</p>
           </div>
 

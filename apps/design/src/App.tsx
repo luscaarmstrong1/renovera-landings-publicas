@@ -110,7 +110,7 @@ function App() {
       <header className="header">
         <div className="container headerInner">
           <a href="#inicio" className="brand" aria-label="Renovera Regulatória">
-            <img src="/logo-renovera.png" alt="Renovera" />
+<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
             <span>Regulatória</span>
           </a>
 
@@ -416,7 +416,7 @@ function App() {
       <footer className="footer">
         <div className="container footerGrid">
           <div className="footerBrand">
-            <img src="/logo-renovera.png" alt="Renovera" />
+<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
             <p>
               Engenharia, energia e regulação para proteger ativos, destravar acessos e estruturar defesas técnicas no setor elétrico.
             </p>

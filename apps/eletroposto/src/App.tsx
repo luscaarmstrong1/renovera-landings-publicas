@@ -95,7 +95,7 @@ function App() {
       <header className="header">
         <div className="container headerInner">
           <a href="#inicio" className="brand">
-            <img src="/logo-renovera.png" alt="Renovera" />
+<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
           </a>
 
           <nav className="nav">
@@ -561,7 +561,7 @@ function App() {
       <footer className="footer">
         <div className="container footerGrid">
           <div>
-            <img src="/logo-renovera.png" alt="Renovera" />
+<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
             <p>
               Engenharia, energia e mobilidade elétrica para estruturar a nova
               infraestrutura de recarga no Brasil.

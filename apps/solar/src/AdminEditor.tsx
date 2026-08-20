@@ -106,7 +106,7 @@ export default function AdminEditor({ config, setConfig }: Props) {
     <div className="editor-page">
       <aside className="editor-sidebar">
         <a className="editor-logo" href="/">
-          <img src="/logo-renovera.png" alt="Renovera" />
+          <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
         </a>
         <strong>Painel visual</strong>
         <p>Edite textos, CTAs e ajustes visuais sem mexer direto no App.tsx.</p>
