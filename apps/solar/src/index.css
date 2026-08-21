@@ -2094,6 +2094,15 @@ a {
   }
 }
 
+.brand span { font-size: .72rem; font-weight: 900; letter-spacing: .06em; color: var(--text); white-space: nowrap; }
+.visual-proof-media { grid-template-columns: minmax(0, 1.5fr) minmax(150px, .7fr); min-height: 430px; gap: 16px; }
+.visual-proof-media img { min-height: 390px; aspect-ratio: 16 / 10; }
+.visual-proof-media img:last-child { min-height: 250px; aspect-ratio: 4 / 3; margin-top: 104px; }
+.whatsapp-float { width: 56px; height: 56px; min-height: 56px; padding: 0; border-radius: 50%; background: #1f9d59; box-shadow: 0 12px 28px rgba(31, 157, 89, .32); transition: transform .2s ease, background .2s ease; }
+.whatsapp-float:hover { background: #168448; transform: translateY(-3px); }
+.whatsapp-float:focus-visible { outline: 3px solid #f2bf4a; outline-offset: 4px; }
+@media (max-width: 760px) { .brand span { font-size: .6rem; } .visual-proof-media { grid-template-columns: 1fr; min-height: 0; } .visual-proof-media img, .visual-proof-media img:last-child { min-height: 240px; margin-top: 0; } .whatsapp-float { right: 16px; bottom: 16px; width: 52px; height: 52px; min-height: 52px; } }
+
 /* Product signature: field engineering with a live generation overlay. */
 .solar-panel-wrap {
   min-height: 570px;

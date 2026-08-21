@@ -186,6 +186,7 @@ function App() {
         <div className="container nav">
           <a href="#inicio" className="brand" aria-label="Renovera">
 <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
+            <span>RENOVERA | PROJETOS ELÉTRICOS</span>
           </a>
 
           <nav className="nav-links" aria-label="Navegação principal">

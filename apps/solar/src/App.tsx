@@ -384,6 +384,7 @@ function App() {
         <div className="container nav">
           <a href="#top" className="brand" aria-label="Renovera">
             <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
+            <span>RENOVERA | SOLAR</span>
           </a>
 
           <nav className="nav-links" aria-label="Menu principal">
@@ -832,7 +833,7 @@ function App() {
       </footer>
 
       {siteConfig.visual.showFloatingWhatsapp && (
-        <a className="whatsapp-float" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("floating_button")} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp">
+        <a className="whatsapp-float" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("floating_button")} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp">
           <WhatsAppIcon />
         </a>
       )}

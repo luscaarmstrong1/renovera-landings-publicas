@@ -111,7 +111,7 @@ function App() {
         <div className="container headerInner">
           <a href="#inicio" className="brand" aria-label="Renovera Regulatória">
 <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>Regulatória</span>
+            <span>RENOVERA | REGULATÓRIA</span>
           </a>
 
           <nav className="nav">

@@ -95,7 +95,8 @@ function App() {
       <header className="header">
         <div className="container headerInner">
           <a href="#inicio" className="brand">
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
+            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
+            <span>RENOVERA | RENOVERA CHARGE</span>
           </a>
 
           <nav className="nav">
