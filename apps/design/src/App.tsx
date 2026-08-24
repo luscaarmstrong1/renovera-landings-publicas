@@ -6,7 +6,7 @@ import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
 );
-const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const services = [
   {
@@ -154,15 +154,7 @@ function App() {
               </div>
             </div>
 
-            <div className="heroVisual" aria-label="Engenharia e documentação para defesa regulatória">
-              <img
-                className="regulatoryHeroImage"
-                src={`${import.meta.env.BASE_URL}regulatory-analysis.webp`}
-                alt="Engenheira analisando documentação técnica do setor elétrico"
-                width="1600"
-                height="917"
-                fetchPriority="high"
-              />
+            <HeroArtworkFrame className="heroVisual" label="Painel de defesa regulatoria">
               <div className="regCard">
                 <div className="regTop">
                   <span>Renovera Defense Hub</span>
@@ -199,7 +191,7 @@ function App() {
                 <strong>Defesa administrativa</strong>
                 <p>Reanálise com base técnica e regulatória.</p>
               </div>
-            </div>
+            </HeroArtworkFrame>
           </div>
         </section>
 
@@ -214,8 +206,27 @@ function App() {
               <div className="visual-proof-points"><span>Auditoria documental</span><span>Premissas rastreaveis</span><span>Defesa administrativa</span></div>
             </div>
             <div className="visual-proof-media">
-              <img src={`${import.meta.env.BASE_URL}regulatory-defense.webp`} alt="Engenheiro analisando esquemas eletricos para uma defesa tecnica" width="1600" height="900" loading="lazy" />
-              <img src={`${import.meta.env.BASE_URL}regulatory-field.webp`} alt="Inspecao eletrica com documentacao tecnica em campo" width="1600" height="900" loading="lazy" />
+              <SectionImage
+                src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp`}
+                srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp 1600w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
+                alt="Engenheiros analisando uma usina solar com informações técnicas"
+                width="1600"
+                height="900"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="renovera-image-gallery-section" aria-labelledby="regulatory-context-title">
+          <div className="container">
+            <div className="renovera-image-gallery-section__heading">
+              <span className="pill">Evidência e estratégia</span>
+              <h2 id="regulatory-context-title">Diagnóstico de campo e análise documental sustentam uma resposta técnica consistente.</h2>
+            </div>
+            <div className="renovera-image-gallery">
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Equipe técnica inspecionando painéis solares em uma cobertura" width="1600" height="900" />
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Especialista avaliando indicadores técnicos de energia no escritório" width="1600" height="900" />
             </div>
           </div>
         </section>

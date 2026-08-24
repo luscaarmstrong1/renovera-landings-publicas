@@ -5,7 +5,7 @@ import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
-const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const CONFIG = {
   modulePowerWp: 585,
@@ -425,15 +425,7 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-panel-wrap solar-panel-wrap" aria-hidden="true">
-              <img
-                className="solarHeroImage"
-                src={`${import.meta.env.BASE_URL}solar-hero.webp`}
-                alt=""
-                width="1536"
-                height="1024"
-                fetchPriority="high"
-              />
+            <HeroArtworkFrame className="hero-panel-wrap solar-panel-wrap" label="Simulacao de sistema solar">
               <div className="solar-dashboard refined-dashboard">
                 <div className="hero-panel-top refined-top">
                   <span className="hero-os">Renovera Solar</span>
@@ -500,7 +492,7 @@ function App() {
                 <strong>{formatDecimal(result.paybackYears, 1)} anos</strong>
                 <p>considerando a economia mensal projetada</p>
               </div>
-            </div>
+            </HeroArtworkFrame>
           </div>
         </section>
 
@@ -515,8 +507,27 @@ function App() {
               </div>
             </div>
             <div className="visual-proof-media">
-              <img src={`${import.meta.env.BASE_URL}solar-engineering.webp`} alt="Engenheiro inspecionando paineis solares em uma instalacao urbana" width="1600" height="900" loading="lazy" />
-              <img src={`${import.meta.env.BASE_URL}solar-planning.webp`} alt="Engenheiro analisando o planejamento de uma planta solar" width="1600" height="900" loading="lazy" />
+              <SectionImage
+                src={`${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation.webp`}
+                srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation.webp 1600w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
+                alt="Técnico instalando módulos fotovoltaicos em cobertura urbana"
+                width="1600"
+                height="900"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="renovera-image-gallery-section" aria-labelledby="solar-context-title">
+          <div className="container">
+            <div className="renovera-image-gallery-section__heading">
+              <span className="pill">Cenários de projeto</span>
+              <h2 id="solar-context-title">Do campo à engenharia, o estudo considera o contexto da implantação.</h2>
+            </div>
+            <div className="renovera-image-gallery">
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Consultoria para sistema agrovoltaico em propriedade rural" width="1600" height="900" />
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Cliente acompanhando informações de um projeto solar residencial" width="1600" height="900" />
             </div>
           </div>
         </section>

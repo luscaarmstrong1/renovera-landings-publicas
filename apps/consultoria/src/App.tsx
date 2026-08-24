@@ -30,7 +30,7 @@ const baseMessage =
   "Olá, quero solicitar uma análise técnica para projeto elétrico de baixa, média e alta tensão, subestação, entrada de energia ou ACL.";
 
 const whatsappLink = buildWhatsappUrl(baseMessage, WHATSAPP_NUMBER);
-const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -221,15 +221,7 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-visual">
-              <img
-                className="projectsHeroImage"
-                src={`${import.meta.env.BASE_URL}projects-hero.webp`}
-                alt="Infraestrutura elétrica industrial inspecionada por equipe de engenharia"
-                width="1600"
-                height="1000"
-                fetchPriority="high"
-              />
+            <HeroArtworkFrame className="hero-visual" label="Painel de engenharia de projetos">
               <div className="engineering-card">
                 <div className="engineering-top">
                   <span>Renovera GridDesk</span>
@@ -270,7 +262,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            </div>
+            </HeroArtworkFrame>
           </div>
         </section>
 
@@ -283,8 +275,27 @@ function App() {
               <div className="visual-proof-points"><span>Inspecao de campo</span><span>Projeto executivo</span><span>Interface tecnica</span></div>
             </div>
             <div className="visual-proof-media">
-              <img src={`${import.meta.env.BASE_URL}projects-field.webp`} alt="Tecnico junto ao painel de controle industrial" width="1600" height="900" loading="lazy" />
-              <img src={`${import.meta.env.BASE_URL}projects-planning.webp`} alt="Engenheiro analisando um projeto eletrico" width="1600" height="900" loading="lazy" />
+              <SectionImage
+                src={`${import.meta.env.BASE_URL}images/official/projetos/projects-substation-engineering.webp`}
+                srcSet={`${import.meta.env.BASE_URL}images/official/projetos/projects-substation-engineering-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-substation-engineering.webp 1600w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
+                alt="Equipe de engenharia avaliando um projeto elétrico em sala técnica"
+                width="1600"
+                height="900"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="renovera-image-gallery-section" aria-labelledby="projects-context-title">
+          <div className="container">
+            <div className="renovera-image-gallery-section__heading">
+              <span className="pill">Execução com rigor</span>
+              <h2 id="projects-context-title">A decisão de projeto combina vistoria, proteção e planejamento técnico.</h2>
+            </div>
+            <div className="renovera-image-gallery">
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Equipe técnica realizando inspeção em infraestrutura elétrica" width="1600" height="900" />
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Profissionais verificando painéis e planejamento de instalação elétrica" width="1600" height="900" />
             </div>
           </div>
         </section>

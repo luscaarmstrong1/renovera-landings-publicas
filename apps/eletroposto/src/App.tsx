@@ -6,7 +6,7 @@ import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero avaliar um projeto de eletroposto com a Renovera."
 );
-const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -149,15 +149,7 @@ function App() {
               </div>
             </div>
 
-            <div className="heroVisual">
-              <img
-                className="evHeroImage"
-                src={`${import.meta.env.BASE_URL}ev-hero.webp`}
-                alt="Veículo elétrico conectado a um carregador rápido"
-                width="1536"
-                height="1024"
-                fetchPriority="high"
-              />
+            <HeroArtworkFrame className="heroVisual" label="Painel de operacao de eletroposto">
               <div className="dashboardCard">
                 <div className="dashboardTop">
                   <span>Renovera Energy Hub</span>
@@ -202,7 +194,7 @@ function App() {
                 <strong>11 a 240 kW</strong>
                 <p>para residenciais, empresas e hubs de alta demanda</p>
               </div>
-            </div>
+            </HeroArtworkFrame>
           </div>
         </section>
 
@@ -215,8 +207,27 @@ function App() {
               <div className="visual-proof-points"><span>Fluxo de veículos</span><span>Potencia adequada</span><span>Operacao sustentavel</span></div>
             </div>
             <div className="visual-proof-media">
-              <img src={`${import.meta.env.BASE_URL}ev-operations.webp`} alt="Estacao de carregamento eletrico em operacao" width="1600" height="900" loading="lazy" />
-              <img src={`${import.meta.env.BASE_URL}ev-site.webp`} alt="Equipe revisando um local de recarga eletrica" width="1600" height="900" loading="lazy" />
+              <SectionImage
+                src={`${import.meta.env.BASE_URL}images/official/charge/charge-shopping-center.webp`}
+                srcSet={`${import.meta.env.BASE_URL}images/official/charge/charge-shopping-center-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-shopping-center.webp 1448w`}
+                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
+                alt="Estação de recarga para veículos elétricos em centro comercial"
+                width="1448"
+                height="1086"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="renovera-image-gallery-section" aria-labelledby="charge-context-title">
+          <div className="container">
+            <div className="renovera-image-gallery-section__heading">
+              <span className="eyebrow">Aplicações com contexto</span>
+              <h2 id="charge-context-title">A infraestrutura muda conforme a jornada, a frota e a demanda do local.</h2>
+            </div>
+            <div className="renovera-image-gallery">
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Frota corporativa elétrica conectada a carregadores" width="1448" height="1086" />
+              <SectionImage src={`${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp 1448w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Hub de recarga rápida em corredor rodoviário ao entardecer" width="1448" height="1086" />
             </div>
           </div>
         </section>
