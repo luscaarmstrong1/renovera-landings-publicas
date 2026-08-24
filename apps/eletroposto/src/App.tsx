@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from "react";
 import LiveEditor from "./LiveEditor";
-import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
+import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero avaliar um projeto de eletroposto com a Renovera."
@@ -94,9 +94,9 @@ function App() {
     <div className="page">
       <header className="header">
         <div className="container headerInner">
-          <a href="#inicio" className="brand">
+          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
             <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>RENOVERA | RENOVERA CHARGE</span>
+            <span>RENOVERA CHARGE</span>
           </a>
 
           <nav className="nav">
@@ -608,6 +608,11 @@ function App() {
             <a href="mailto:compliance@renovera.com.br">
               compliance@renovera.com.br
             </a>
+          </div>
+
+          <div className="footer-solutions">
+            <h4>Soluções</h4>
+            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
           </div>
         </div>
 

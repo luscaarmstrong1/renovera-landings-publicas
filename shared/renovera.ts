@@ -4,6 +4,17 @@ export const RENOVERA_CONTACT = {
   privacyUrl: "https://renovera.com.br/lgpd.html"
 } as const;
 
+export const RENOVERA_HOME = "https://renovera.com.br/";
+
+export const RENOVERA_SOLUTIONS = [
+  { label: "Energia Solar", href: "https://renovera.com.br/solar/" },
+  { label: "Renovera Charge", href: "https://renovera.com.br/eletroposto/" },
+  { label: "Regulatória", href: "https://renovera.com.br/design/" },
+  { label: "Projetos Elétricos", href: "https://renovera.com.br/consultoria/" },
+  { label: "Renô Compartilha", href: "https://renovera.com.br/compartilha/" },
+  { label: "Renô Gestão", href: "https://renovera.com.br/gestao/" }
+] as const;
+
 const ATTRIBUTION_KEYS = [
   "utm_source",
   "utm_medium",

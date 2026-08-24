@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import LiveEditor from "./LiveEditor";
-import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
+import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
@@ -109,9 +109,9 @@ function App() {
     <div className="page">
       <header className="header">
         <div className="container headerInner">
-          <a href="#inicio" className="brand" aria-label="Renovera Regulatória">
+          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
 <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>RENOVERA | REGULATÓRIA</span>
+            <span>REGULATÓRIA</span>
           </a>
 
           <nav className="nav">
@@ -456,6 +456,11 @@ function App() {
             <h4>Regulação</h4>
             <p>Consultoria técnica e regulação de ativos.</p>
             <p>CREA-SP / CREA-MG · ANEEL · REN 1000/2021 · PRODIST</p>
+          </div>
+
+          <div className="footerCol footer-solutions">
+            <h4>Soluções</h4>
+            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
           </div>
         </div>
 

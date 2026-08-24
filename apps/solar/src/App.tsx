@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AdminEditor from "./AdminEditor";
 import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
-import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
+import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
 
@@ -382,9 +382,9 @@ function App() {
     <div className="page" style={{ "--accent": siteConfig.visual.accentColor } as React.CSSProperties}>
       <header className="site-header">
         <div className="container nav">
-          <a href="#top" className="brand" aria-label="Renovera">
+          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
             <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>RENOVERA | SOLAR</span>
+            <span>SOLAR</span>
           </a>
 
           <nav className="nav-links" aria-label="Menu principal">
@@ -824,6 +824,11 @@ function App() {
           <div className="footer-col">
             <h4>{siteConfig.footer.scopeTitle}</h4>
             <p>{siteConfig.footer.scopeText}</p>
+          </div>
+
+          <div className="footer-col footer-solutions">
+            <h4>Soluções</h4>
+            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
           </div>
         </div>
 

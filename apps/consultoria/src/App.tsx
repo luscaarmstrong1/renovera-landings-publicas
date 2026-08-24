@@ -21,7 +21,7 @@ import {
   X
 } from "lucide-react";
 import LiveEditor from "./LiveEditor";
-import { buildWhatsappUrl, trackEvent } from "../../../shared/renovera";
+import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
 
@@ -184,9 +184,9 @@ function App() {
     <div className="page">
       <header className="site-header">
         <div className="container nav">
-          <a href="#inicio" className="brand" aria-label="Renovera">
+          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
 <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>RENOVERA | PROJETOS ELÉTRICOS</span>
+            <span>PROJETOS ELÉTRICOS</span>
           </a>
 
           <nav className="nav-links" aria-label="Navegação principal">
@@ -511,6 +511,11 @@ function App() {
           <div className="footer-col">
             <h4>Escopo técnico</h4>
             <p>Projetos elétricos, subestações, proteção, entrada de energia, concessionárias e ACL.</p>
+          </div>
+
+          <div className="footer-col footer-solutions">
+            <h4>Soluções</h4>
+            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
           </div>
         </div>
 

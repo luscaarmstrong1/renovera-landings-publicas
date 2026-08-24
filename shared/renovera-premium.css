@@ -79,9 +79,9 @@ html { scroll-behavior: smooth; }
   right: 22px !important;
   bottom: calc(22px + env(safe-area-inset-bottom)) !important;
   z-index: 100 !important;
-  width: 58px !important;
-  height: 58px !important;
-  min-height: 58px !important;
+  width: 60px !important;
+  height: 60px !important;
+  min-height: 60px !important;
   display: grid !important;
   place-items: center !important;
   border-radius: 50% !important;
@@ -92,6 +92,31 @@ html { scroll-behavior: smooth; }
 .rv-whatsapp-premium::before { inset: -5px !important; z-index: 0 !important; border-color: rgba(37, 211, 102, .34) !important; opacity: 1 !important; }
 .rv-whatsapp-premium::after { inset: -10px !important; z-index: 0 !important; border-color: rgba(37, 211, 102, .18) !important; opacity: 1 !important; }
 .rv-whatsapp-premium > * { position: relative; z-index: 1; }
+
+/* Shared shell refinements applied after each product stylesheet. */
+.brand img {
+  width: 176px !important;
+  max-width: 176px;
+  height: auto !important;
+  max-height: 48px;
+  object-fit: contain;
+}
+.brand span { letter-spacing: 0 !important; }
+.footer-grid,
+.footerGrid {
+  grid-template-columns: minmax(220px, 1.35fr) repeat(auto-fit, minmax(140px, .75fr)) !important;
+}
+.footer-solutions a { display: block; }
+.visual-proof-media img,
+.hero-media img,
+.hero-visual img {
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+  .footer-grid, .footerGrid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
 
 @keyframes rv-whatsapp-pulse {
   0%, 62%, 100% { opacity: 0; transform: scale(.92); }
@@ -108,6 +133,8 @@ html { scroll-behavior: smooth; }
 @media (max-width: 760px) {
   .rv-scroll-top { left: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); width: 44px; height: 44px; }
   .whatsapp-float, .rv-whatsapp-premium { right: 16px !important; bottom: calc(16px + env(safe-area-inset-bottom)) !important; }
+  .brand img { width: 148px !important; max-width: 148px; max-height: 41px; }
+  .footer-grid, .footerGrid { grid-template-columns: minmax(0, 1fr) !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
