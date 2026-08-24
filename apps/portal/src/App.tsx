@@ -1,6 +1,9 @@
 ﻿import { ReactElement, useEffect, useMemo, useRef, useState } from "react";
+import { createElement } from "react";
+import { createRenoveraLandingUi } from "@renovera/landing-ui";
 
 const whatsapp = "https://wa.me/5519996514827";
+const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 const email = "contato@renovera.com.br";
 const complianceEmail = "compliance@renovera.com.br";
 const address = "Rua Visconde de Rio Branco, 106, SÃ£o JoÃ£o da Boa Vista - SP";
@@ -268,7 +271,7 @@ function Header() {
   );
 }
 
-function Footer() {
+function LegacyFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer__container">
@@ -754,6 +757,10 @@ function CookieBanner({ path }: { path: string }) {
   );
 }
 
+function Footer() {
+  return <SiteFooter logoSrc={renoveraAsset("logo.png")} whatsappHref={whatsapp} privacyHref={`${assetBase}politica-de-privacidade`} termsHref={`${assetBase}termos-de-uso`} />;
+}
+
 function BackToTop({ visible }: { visible: boolean }) {
   return (
     <button className={`back-to-top ${visible ? "visible" : ""}`} type="button" aria-label="Voltar ao inÃ­cio da pÃ¡gina" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
@@ -845,16 +852,9 @@ function App() {
       <Footer />
       <CookieBanner path={path} />
       <BackToTop visible={showTop} />
-      <a
-        className="whatsapp-float"
-        href={wa("OlÃ¡, Renovera. Gostaria de conversar sobre uma soluÃ§Ã£o de energia para minha operaÃ§Ã£o.")}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Falar com a Renovera no WhatsApp"
-        title="Falar com a Renovera"
-      >
-        <WhatsAppIcon />
-      </a>
+      <FloatingWhatsApp href={wa("Olá, Renovera. Gostaria de conversar sobre uma solução de energia para minha operação.")} />
+      <PageProgress />
+      <ScrollToTop />
     </>
   );
 }

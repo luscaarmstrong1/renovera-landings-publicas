@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { createElement, useEffect, useMemo, useState } from "react";
+import { createRenoveraLandingUi } from "@renovera/landing-ui";
 import {
   ArrowRight,
   BadgeCheck,
@@ -29,6 +30,7 @@ const baseMessage =
   "Olá, quero solicitar uma análise técnica para projeto elétrico de baixa, média e alta tensão, subestação, entrada de energia ou ACL.";
 
 const whatsappLink = buildWhatsappUrl(baseMessage, WHATSAPP_NUMBER);
+const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -182,12 +184,7 @@ function App() {
 
   return (
     <div className="page">
-      <header className="site-header">
-        <div className="container nav">
-          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>PROJETOS ELÉTRICOS</span>
-          </a>
+      <ProductHeader product="PROJETOS ELÉTRICOS" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="site-header" contentClassName="container nav">
 
           <nav className="nav-links" aria-label="Navegação principal">
             <a href="#solucoes">Soluções</a>
@@ -198,8 +195,7 @@ function App() {
           <button className="nav-cta" onClick={() => openLeadModal("header")}>
             Solicitar análise
           </button>
-        </div>
-      </header>
+      </ProductHeader>
 
       <main>
         <section className="hero engenharia-hero" id="inicio">
@@ -486,47 +482,11 @@ function App() {
           </div>
         </section>
       </main>
-      <footer className="footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <p>Engenharia, projetos elétricos e consultoria técnica para empresas que precisam aprovar infraestrutura com segurança e precisão.</p>
-          </div>
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackWhatsapp("footer")} />
 
-          <div className="footer-col">
-            <h4>Menu</h4>
-            <a href="#solucoes">Soluções</a>
-            <a href="#viabilidade">Viabilidade</a>
-            <a href="#metodo">Método</a>
-            <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp</a>
-          </div>
-
-          <div className="footer-col">
-            <h4>Contato</h4>
-            <p>R. Visc. de Rio Branco, 106</p>
-            <p>São João da Boa Vista - SP</p>
-            <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp técnico</a>
-          </div>
-
-          <div className="footer-col">
-            <h4>Escopo técnico</h4>
-            <p>Projetos elétricos, subestações, proteção, entrada de energia, concessionárias e ACL.</p>
-          </div>
-
-          <div className="footer-col footer-solutions">
-            <h4>Soluções</h4>
-            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} Renovera Energias Renováveis Ltda. Todos os direitos reservados.</span>
-        </div>
-      </footer>
-
-      <a className="floating-whatsapp" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera">
-        <WhatsAppIcon />
-      </a>
+      <FloatingWhatsApp href={whatsappLink} onClick={() => trackWhatsapp("floating_button")} />
+      <PageProgress />
+      <ScrollToTop />
       <LiveEditor namespace="renovera-projetos-eletricos-consultoria" />
 
       {modalOpen && (

@@ -1,10 +1,12 @@
-import { useMemo, useState } from "react";
+import { createElement, useEffect, useMemo, useState } from "react";
+import { createRenoveraLandingUi } from "@renovera/landing-ui";
 import LiveEditor from "./LiveEditor";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
 );
+const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const services = [
   {
@@ -107,12 +109,7 @@ function App() {
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container headerInner">
-          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>REGULATÓRIA</span>
-          </a>
+      <ProductHeader product="CONSULTORIA REGULATÓRIA" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
 
           <nav className="nav">
             <a href="#atuacao">Áreas de Atuação</a>
@@ -122,8 +119,7 @@ function App() {
           </nav>
 
           <a className="headerButton" href="#triagem">Agendar Consulta Estratégica</a>
-        </div>
-      </header>
+      </ProductHeader>
 
       <main>
         <section className="hero" id="inicio">
@@ -428,50 +424,11 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="container footerGrid">
-          <div className="footerBrand">
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <p>
-              Engenharia, energia e regulação para proteger ativos, destravar acessos e estruturar defesas técnicas no setor elétrico.
-            </p>
-          </div>
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" />
 
-          <div className="footerCol">
-            <h4>Menu</h4>
-            <a href="#atuacao">Áreas de atuação</a>
-            <a href="#legislacao">Legislação</a>
-            <a href="#triagem">Triagem regulatória</a>
-            <a href="#inicio">Voltar ao início</a>
-          </div>
-
-          <div className="footerCol">
-            <h4>Contato</h4>
-            <a href={whatsappLink} target="_blank">WhatsApp comercial</a>
-            <a href="mailto:contato@renovera.com.br">contato@renovera.com.br</a>
-            <p>R. Visc. de Rio Branco, 106, São João da Boa Vista - SP</p>
-          </div>
-
-          <div className="footerCol">
-            <h4>Regulação</h4>
-            <p>Consultoria técnica e regulação de ativos.</p>
-            <p>CREA-SP / CREA-MG · ANEEL · REN 1000/2021 · PRODIST</p>
-          </div>
-
-          <div className="footerCol footer-solutions">
-            <h4>Soluções</h4>
-            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
-          </div>
-        </div>
-
-        <div className="container copyright">
-          © 2026 Renovera. Todos os direitos reservados.
-        </div>
-      </footer>
-
-      <a className="whatsappFloat" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp">
-        <WhatsAppIcon />
-      </a>
+      <FloatingWhatsApp href={whatsappLink} />
+      <PageProgress />
+      <ScrollToTop />
       <LiveEditor namespace="renovera-regulatoria-design" />
     </div>
   );

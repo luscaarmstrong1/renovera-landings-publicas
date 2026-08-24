@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { createElement, useEffect, useMemo, useState } from "react";
+import { createRenoveraLandingUi } from "@renovera/landing-ui";
 import AdminEditor from "./AdminEditor";
 import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
+const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const CONFIG = {
   modulePowerWp: 585,
@@ -380,12 +382,7 @@ function App() {
 
   return (
     <div className="page" style={{ "--accent": siteConfig.visual.accentColor } as React.CSSProperties}>
-      <header className="site-header">
-        <div className="container nav">
-          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
-            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>SOLAR</span>
-          </a>
+      <ProductHeader product="ENERGIA SOLAR" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="site-header" contentClassName="container nav">
 
           <nav className="nav-links" aria-label="Menu principal">
             <a href="#calculadora">Calculadora</a>
@@ -397,8 +394,7 @@ function App() {
           <a className="nav-cta" href="#calculadora">
             Solicitar análise
           </a>
-        </div>
-      </header>
+      </ProductHeader>
 
       <main id="top">
         <section className="hero solar-hero">
@@ -800,48 +796,11 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <p>{siteConfig.footer.description}</p>
-          </div>
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={genericWhatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackGenericWhatsapp("footer")} />
 
-          <div className="footer-col">
-            <h4>Menu</h4>
-            <a href="#calculadora">Calculadora</a>
-            <a href="#solucoes">Soluções</a>
-            <a href="#processo">Processo</a>
-            <a href="#duvidas">Dúvidas</a>
-          </div>
-
-          <div className="footer-col">
-            <h4>Contato</h4>
-            <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
-            <a href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("footer")} target="_blank" rel="noreferrer">WhatsApp comercial</a>
-          </div>
-
-          <div className="footer-col">
-            <h4>{siteConfig.footer.scopeTitle}</h4>
-            <p>{siteConfig.footer.scopeText}</p>
-          </div>
-
-          <div className="footer-col footer-solutions">
-            <h4>Soluções</h4>
-            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <span>{siteConfig.footer.copyright}</span>
-        </div>
-      </footer>
-
-      {siteConfig.visual.showFloatingWhatsapp && (
-        <a className="whatsapp-float" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("floating_button")} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp">
-          <WhatsAppIcon />
-        </a>
-      )}
+      <PageProgress />
+      <ScrollToTop />
+      <FloatingWhatsApp href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("floating_button")} />
     </div>
   );
 }

@@ -1,10 +1,12 @@
-import { useId, useMemo, useState } from "react";
+import { createElement, useEffect, useId, useMemo, useState } from "react";
+import { createRenoveraLandingUi } from "@renovera/landing-ui";
 import LiveEditor from "./LiveEditor";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero avaliar um projeto de eletroposto com a Renovera."
 );
+const { FloatingWhatsApp, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -92,12 +94,7 @@ function App() {
 
   return (
     <div className="page">
-      <header className="header">
-        <div className="container headerInner">
-          <a href={RENOVERA_HOME} className="brand" aria-label="Ir para a Renovera">
-            <img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <span>RENOVERA CHARGE</span>
-          </a>
+      <ProductHeader product="RENÔ CHARGE" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
 
           <nav className="nav">
             <a href="#roi">Simulação</a>
@@ -110,8 +107,7 @@ function App() {
           <a className="headerButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("header")}>
             Solicitar estudo
           </a>
-        </div>
-      </header>
+      </ProductHeader>
 
       <main>
         <section className="hero" id="inicio">
@@ -574,56 +570,11 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <div className="container footerGrid">
-          <div>
-<img src={`${import.meta.env.BASE_URL}logo-renovera.png`} alt="Renovera" />
-            <p>
-              Engenharia, energia e mobilidade elétrica para estruturar a nova
-              infraestrutura de recarga no Brasil.
-            </p>
-          </div>
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackWhatsapp("footer")} />
 
-          <div>
-            <h4>Menu</h4>
-            <a href="#roi">Simulação</a>
-            <a href="#solucao">Solução</a>
-            <a href="#aplicacoes">Aplicações</a>
-            <a href="#potencias">Potências</a>
-          </div>
-
-          <div>
-            <h4>Contato</h4>
-            <a href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("footer")}>
-              WhatsApp comercial
-            </a>
-            <a href="mailto:contato@renovera.com.br">contato@renovera.com.br</a>
-          </div>
-
-          <div>
-            <h4>Compliance</h4>
-            <p>
-              Canal ético e confidencial para denúncias e comunicações internas.
-            </p>
-            <a href="mailto:compliance@renovera.com.br">
-              compliance@renovera.com.br
-            </a>
-          </div>
-
-          <div className="footer-solutions">
-            <h4>Soluções</h4>
-            {RENOVERA_SOLUTIONS.map((solution) => <a key={solution.href} href={solution.href}>{solution.label}</a>)}
-          </div>
-        </div>
-
-        <div className="container copyright">
-          © 2026 Renovera. Todos os direitos reservados.
-        </div>
-      </footer>
-
-      <a className="whatsappFloat" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Falar com a Renovera no WhatsApp" onClick={() => trackWhatsapp("floating_button")}>
-        <WhatsAppIcon />
-      </a>
+      <FloatingWhatsApp href={whatsappLink} onClick={() => trackWhatsapp("floating_button")} />
+      <PageProgress />
+      <ScrollToTop />
       <LiveEditor namespace="renovera-eletroposto" />
     </div>
   );
