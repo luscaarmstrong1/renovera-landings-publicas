@@ -995,6 +995,26 @@ input {
 @media (prefers-reduced-motion: reduce) {
   .heroVisual .dashboardTop strong::before { animation: none; }
 }
+
+/* Compact mobile rhythm and a shared Renovera closing section. */
+.finalCta { padding: clamp(56px, 7vw, 82px) 0; background: var(--renovera-brand-gradient); }
+.finalCtaBox { max-width: 880px; margin: 0 auto; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: #fff; }
+.finalCtaBox .eyebrow { color: #fff; }
+.finalCtaBox h2, .finalCtaBox p { color: #fff; }
+.finalCtaBox p { color: rgba(255,255,255,.86); }
+.finalCtaBox .primaryButton { background: var(--gold); color: #382c00; }
+
+@media (max-width: 760px) {
+  .hero { padding: 34px 0 44px; }
+  .section, .visual-proof { padding: 48px 0; }
+  .visual-proof-grid { gap: 24px; }
+  .heroContent h1, .sectionHeader h2, .splitHeader h2, .finalCtaBox h2 { letter-spacing: 0; }
+  .heroVisual { min-height: 500px; }
+  .heroVisual .dashboardMain { max-height: 168px; overflow: hidden; }
+  .finalCta { padding: 48px 0; }
+  .finalCtaBox { text-align: center; }
+  .finalCtaBox .primaryButton { width: 100%; }
+}
  .visual-proof { padding: 88px 0; background: #071c2c; color: #f5f9fa; }
 .visual-proof-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
 .visual-proof-copy h2 { max-width: 620px; }

@@ -2104,6 +2104,25 @@ a {
     right: 12px;
   }
 }
+
+/* Compact mobile rhythm and a shared Renovera closing section. */
+.development-section { background: var(--renovera-brand-gradient); padding: clamp(56px, 7vw, 82px) 0; }
+.development-card { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); }
+.contact-actions .btn-secondary { background: var(--gold); color: #382c00; }
+.contact-actions .btn-primary { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.32); color: #fff; }
+
+@media (max-width: 680px) {
+  .hero { padding: 38px 0 44px; }
+  .section, .visual-proof { padding: 48px 0; }
+  .visual-proof-grid { gap: 24px; }
+  .hero-copy h1, .development-left h2 { letter-spacing: 0; }
+  .solar-panel-wrap { min-height: 520px; }
+  .solar-panel-wrap .solar-farm-art { height: 170px; }
+  .development-section { padding: 48px 0; }
+  .development-card { gap: 24px; padding: 24px 20px; border-radius: 8px; }
+  .contact-actions { width: 100%; }
+  .contact-actions .btn { width: 100%; }
+}
  .visual-proof {
   padding: 88px 0;
   background: #f7faf8;

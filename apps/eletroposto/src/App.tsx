@@ -548,6 +548,7 @@ function App() {
 
         <section className="finalCta">
           <div className="container finalCtaBox">
+            <span className="eyebrow">Próximo passo</span>
             <h2>Quer transformar a simulação em um estudo real?</h2>
             <p>
               A Renovera pode avaliar seu local, estimar o investimento,

@@ -1050,6 +1050,22 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
     margin: 12px;
   }
 }
+
+/* Compact mobile rhythm and a shared Renovera closing section. */
+.final-cta { background: var(--renovera-brand-gradient); padding: clamp(56px, 7vw, 82px) 0; }
+.final-actions .btn-secondary { background: var(--gold); color: #382c00; }
+.final-actions .btn-primary { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.34); color: #fff; }
+
+@media (max-width: 680px) {
+  .hero { padding: 38px 0 44px; }
+  .section, .visual-proof { padding: 48px 0; }
+  .visual-proof-grid { gap: 24px; }
+  .hero-copy h1, .section-head h2, .final-card h2 { letter-spacing: 0; }
+  .hero-visual { min-height: 500px; }
+  .hero-visual .substation-diagram { height: 128px; }
+  .final-cta { padding: 48px 0; }
+  .final-actions { width: 100%; }
+}
  .visual-proof { padding: 88px 0; background: #f6f8f6; }
 .visual-proof-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
 .visual-proof-copy h2 { max-width: 620px; }
