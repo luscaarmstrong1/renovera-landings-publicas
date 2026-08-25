@@ -4,9 +4,9 @@ import LiveEditor from "./LiveEditor";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
-  "Olá, quero avaliar um projeto de eletroposto com a Renovera."
+  "Olá, Renovera. Quero solicitar uma análise para um projeto de eletroposto."
 );
-const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FinalParallaxCta, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -94,7 +94,8 @@ function App() {
 
   return (
     <div className="page">
-      <ProductHeader product="RENÔ CHARGE" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <ProductHeader product="CHARGE" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
 
           <nav className="nav">
             <a href="#roi">Simulação</a>
@@ -104,12 +105,12 @@ function App() {
             <a href="#duvidas">Dúvidas</a>
           </nav>
 
-          <a className="headerButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("header")}>
+          <a className="headerButton" href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsapp("header")}>
             Solicitar análise do projeto
           </a>
       </ProductHeader>
 
-      <main>
+      <main id="conteudo">
         <section className="hero" id="inicio">
           <div className="container heroGrid">
             <div className="heroContent">
@@ -126,9 +127,9 @@ function App() {
 
               <div className="heroActions">
                 <a className="primaryButton" href="#roi" onClick={() => trackEvent("select_content", { product: "eletroposto", content_type: "roi_simulator", placement: "hero" })}>
-                  Simular a viabilidade do eletroposto
+                  Simular viabilidade do eletroposto
                 </a>
-                <a className="secondaryButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("hero")}>
+                <a className="secondaryButton" href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsapp("hero")}>
                   Falar com um especialista
                 </a>
               </div>
@@ -204,11 +205,11 @@ function App() {
           title="Recarga desenhada para a jornada, a frota e a demanda do local."
           description="A decisão considera fluxo de veículos, potência, permanência e operação. O resultado é uma infraestrutura coerente com o negócio e preparada para crescer."
           points={["Fluxo de veículos", "Potência adequada", "Operação sustentável"]}
-          primaryAction={{ href: "#roi", label: "Simular a viabilidade do eletroposto" }}
-          secondaryAction={{ href: whatsappLink, label: "Falar com especialista", external: true, onClick: () => trackWhatsapp("combined_insight") }}
+          primaryAction={{ href: "#roi", label: "Simular viabilidade do eletroposto" }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackWhatsapp("combined_insight") }}
           images={[
             { src: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`, alt: "Frota corporativa elétrica conectada a carregadores", width: 1448, height: 1086 },
-            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp 1448w`, alt: "Hub de recarga rapida em corredor rodoviario ao entardecer", width: 1448, height: 1086 }
+            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp 1448w`, alt: "Hub de recarga rápida em corredor rodoviário ao entardecer", width: 1448, height: 1086 }
           ]}
         />
 
@@ -293,25 +294,13 @@ function App() {
 
               <div className="results">
                 <div className="resultCard">
-                  <span>Energia mensal</span>
-                  <strong>{formatNumber(result.monthlyKwh)} kWh</strong>
+                  <span>Investimento inicial</span>
+                  <strong>{formatCurrency(investment)}</strong>
                 </div>
 
                 <div className="resultCard">
                   <span>Receita bruta mensal</span>
                   <strong>{formatCurrency(result.grossRevenue)}</strong>
-                </div>
-
-                <div className="resultCard">
-                  <span>Custo mensal de energia</span>
-                  <strong>{formatCurrency(result.energyExpense)}</strong>
-                </div>
-
-                <div className="resultCard">
-                  <span>Operação e plataforma</span>
-                  <strong>
-                    {formatCurrency(result.platformCost + result.maintenance)}
-                  </strong>
                 </div>
 
                 <div className="highlightResult">
@@ -336,6 +325,26 @@ function App() {
                     {formatCurrency(result.annualNetRevenue)}.
                   </p>
                 </div>
+
+                <p className="simulationDisclaimer">Simulação indicativa. Valores sujeitos à análise técnica e comercial.</p>
+
+                <details className="simulationDetails">
+                  <summary>Ver premissas da simulação</summary>
+                  <div className="simulationDetailsGrid">
+                    <div className="resultCard">
+                      <span>Energia mensal</span>
+                      <strong>{formatNumber(result.monthlyKwh)} kWh</strong>
+                    </div>
+                    <div className="resultCard">
+                      <span>Custo mensal de energia</span>
+                      <strong>{formatCurrency(result.energyExpense)}</strong>
+                    </div>
+                    <div className="resultCard">
+                      <span>Operação e plataforma</span>
+                      <strong>{formatCurrency(result.platformCost + result.maintenance)}</strong>
+                    </div>
+                  </div>
+                </details>
               </div>
             </div>
           </div>
@@ -546,23 +555,18 @@ function App() {
           </div>
         </section>
 
-        <section className="finalCta">
-          <div className="container finalCtaBox">
-            <span className="eyebrow">Próximo passo</span>
-            <h2>Quer transformar a simulação em um estudo real?</h2>
-            <p>
-              A Renovera pode avaliar seu local, estimar o investimento,
-              dimensionar a infraestrutura e indicar a melhor estratégia para o
-              seu eletroposto.
-            </p>
-            <a className="primaryButton" href={simulationWhatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("final_cta", simulationWhatsappLink)}>
-              Solicitar análise do projeto
-            </a>
-          </div>
-        </section>
+        <FinalParallaxCta
+          eyebrow="Próximo passo"
+          title="Transforme a simulação em um estudo para o seu local."
+          description="A Renovera avalia as premissas técnicas e comerciais para dimensionar a infraestrutura e orientar a estratégia do eletroposto."
+          imageSrc={`${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`}
+          imagePosition="center 58%"
+          primaryAction={{ href: simulationWhatsappLink, label: "Solicitar análise do projeto", external: true, onClick: () => trackWhatsapp("final_cta", simulationWhatsappLink) }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackWhatsapp("final_cta_secondary") }}
+        />
       </main>
 
-      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackWhatsapp("footer")} />
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} onWhatsappClick={() => trackWhatsapp("footer")} />
 
       <FloatingWhatsApp href={whatsappLink} onClick={() => trackWhatsapp("floating_button")} />
       <PageProgress />
@@ -633,15 +637,24 @@ function Control({
 
 function Faq({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const id = useId();
 
   return (
     <div className={`faqItem ${open ? "active" : ""}`}>
-      <button onClick={() => setOpen(!open)}>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => {
+          setOpen(!open);
+          if (!open) trackEvent("faq_open", { product: "eletroposto", question });
+        }}
+      >
         <span>{question}</span>
         <strong>{open ? "−" : "+"}</strong>
       </button>
 
-      {open && <p>{answer}</p>}
+      {open && <p id={id}>{answer}</p>}
     </div>
   );
 }

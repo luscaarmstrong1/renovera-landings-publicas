@@ -18,7 +18,6 @@ import {
   ShieldCheck,
   Sparkles,
   Target,
-  Workflow,
   X
 } from "lucide-react";
 import LiveEditor from "./LiveEditor";
@@ -30,7 +29,7 @@ const baseMessage =
   "Olá, quero solicitar uma análise técnica para projeto elétrico de baixa, média e alta tensão, subestação, entrada de energia ou ACL.";
 
 const whatsappLink = buildWhatsappUrl(baseMessage, WHATSAPP_NUMBER);
-const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FinalParallaxCta, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 function WhatsAppIcon() {
   return (
@@ -41,40 +40,40 @@ function WhatsAppIcon() {
 }
 
 const concessionarias = ["CPFL", "Neoenergia Elektro", "Energisa", "Cemig", "EDP", "Outra"];
-const aclOptions = ["Sim", "Não", "Avaliar Viabilidade"];
+const aclOptions = ["Sim", "Não", "Avaliar viabilidade"];
 
 const services = [
   {
     icon: RadioTower,
-    title: "Projetos de Subestações de Energia",
+    title: "Projetos de subestações de energia",
     description:
       "Dimensionamento, especificação e detalhamento executivo de subestações abrigadas, aéreas, em poste blindado ou em alvenaria, incluindo cabines primárias e retrofit de subestações antigas.",
     cta: "Validar subestação"
   },
   {
     icon: Network,
-    title: "Projetos de Linhas de Distribuição e Redes de Média Tensão",
+    title: "Projetos de linhas de distribuição e redes de média tensão",
     description:
       "Redes internas de distribuição para condomínios industriais, logísticos e comerciais, com expansão estruturada e critérios técnicos de continuidade operacional.",
     cta: "Analisar rede interna"
   },
   {
     icon: ShieldCheck,
-    title: "Estudos de Coordenação e Seletividade de Proteção",
+    title: "Estudos de coordenação e seletividade de proteção",
     description:
       "Parametrização e ajuste de relés para garantir que, em caso de falha, apenas o disjuntor mais próximo isole o defeito, evitando o desligamento de uma planta inteira.",
     cta: "Solicitar estudo de proteção"
   },
   {
     icon: FileCheck2,
-    title: "Projetos de Entrada de Energia em Alta/Média Tensão",
+    title: "Projetos de entrada de energia em alta e média tensão",
     description:
       "Desenho técnico, memorial descritivo e documentação para aprovação de novos padrões de entrada junto a concessionárias.",
-    cta: "Aprovar entrada de energia"
+    cta: "Analisar entrada de energia"
   },
   {
     icon: Landmark,
-    title: "Migração e Gestão no Mercado Livre de Energia (ACL)",
+    title: "Migração e gestão no Mercado Livre de Energia (ACL)",
     description:
       "Estudos de viabilidade técnica e regulatória para consumidores do Grupo A migrarem para o Ambiente de Contratação Livre.",
     cta: "Avaliar ACL"
@@ -123,7 +122,7 @@ const process = [
   {
     step: "04",
     title: "Interface com concessionária",
-    description: "Acompanhamento técnico das exigências, respostas e adequações até a aprovação."
+    description: "Acompanhamento técnico das exigências, respostas e adequações até a conclusão da análise pela concessionária."
   }
 ];
 
@@ -131,7 +130,8 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [utility, setUtility] = useState("CPFL");
   const [demand, setDemand] = useState("");
-  const [acl, setAcl] = useState("Avaliar Viabilidade");
+  const [acl, setAcl] = useState("Avaliar viabilidade");
+  const [activeService, setActiveService] = useState(0);
 
   const parsedDemand = Number(String(demand).replace(",", "."));
 
@@ -184,6 +184,7 @@ function App() {
 
   return (
     <div className="page">
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <ProductHeader product="PROJETOS ELÉTRICOS" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="site-header" contentClassName="container nav">
 
           <nav className="nav-links" aria-label="Navegação principal">
@@ -193,16 +194,16 @@ function App() {
           </nav>
 
           <button className="nav-cta" onClick={() => openLeadModal("header")}>
-            Solicitar análise
+            Solicitar análise técnica
           </button>
       </ProductHeader>
 
-      <main>
+      <main id="conteudo">
         <section className="hero engenharia-hero" id="inicio">
           <div className="container hero-grid">
             <div className="hero-copy">
               <span className="pill pill-dark">Renovera Engenharia | Projetos Elétricos</span>
-              <h1>Projeto elétrico aprovado com método e autoridade técnica.</h1>
+              <h1>Projeto elétrico preparado para aprovação, com método e autoridade técnica.</h1>
               <p>
                 Projetos de baixa, média e alta tensão, subestações, estudos de proteção,
                 padrões de entrada e viabilidade para consumidores do Grupo A que
@@ -211,11 +212,11 @@ function App() {
 
               <div className="hero-actions">
                 <button className="btn btn-secondary" onClick={() => openLeadModal("hero")}>
-                  Quero destravar minha aprovação
+                  Quero aprovar minha infraestrutura
                   <ArrowRight size={18} />
                 </button>
-                <a className="btn btn-primary" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("hero")}>
-                  Falar com engenheiro
+                <a className="btn btn-primary" href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsapp("hero")}>
+                  Falar com um engenheiro
                   <Phone size={18} />
                 </a>
               </div>
@@ -275,8 +276,7 @@ function App() {
           primaryAction={{ href: whatsappLink, label: "Solicitar análise técnica", external: true, onClick: () => trackWhatsapp("combined_insight") }}
           secondaryAction={{ href: "#solucoes", label: "Ver especialidades técnicas" }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp 1600w`, alt: "Equipe técnica realizando inspeção em infraestrutura elétrica", width: 1600, height: 900 },
-            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp 1600w`, alt: "Profissionais verificando painéis e planejamento de instalação elétrica", width: 1600, height: 900 }
+            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp 1600w`, alt: "Equipe técnica realizando inspeção em infraestrutura elétrica", width: 1600, height: 900 }
           ]}
         />
 
@@ -309,16 +309,25 @@ function App() {
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <article className={`service-card ${index === 4 ? "wide" : ""}`} key={service.title}>
-                    <div className="icon-box">
-                      <Icon size={26} />
-                    </div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                    <button onClick={() => openLeadModal(`service_${service.title}`)}>
-                      {service.cta}
-                      <ChevronRight size={17} />
+                  <article className={`service-card ${index === 4 ? "wide" : ""} ${activeService === index ? "active" : ""}`} key={service.title}>
+                    <button
+                      className="service-toggle"
+                      type="button"
+                      aria-expanded={activeService === index}
+                      aria-controls={`service-content-${index}`}
+                      onClick={() => setActiveService(index)}
+                    >
+                      <span className="icon-box"><Icon size={26} /></span>
+                      <h3>{service.title}</h3>
+                      <ChevronRight className="service-toggle-icon" size={18} />
                     </button>
+                    <div className="service-content" id={`service-content-${index}`}>
+                      <p>{service.description}</p>
+                      <button onClick={() => openLeadModal(`service_${service.title}`)}>
+                        {service.cta}
+                        <ChevronRight size={17} />
+                      </button>
+                    </div>
                   </article>
                 );
               })}
@@ -341,7 +350,7 @@ function App() {
               <div className="checker-form">
                 <label>
                   <span>1. Selecione a concessionária local</span>
-                  <select name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
+                  <select id="projects-utility" name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
                     {concessionarias.map((item) => (
                       <option key={item}>{item}</option>
                     ))}
@@ -351,6 +360,7 @@ function App() {
                 <label>
                   <span>2. Demanda contratada ou pretendida em kW</span>
                   <input
+                    id="projects-demand"
                     name="demand"
                     value={demand}
                     onChange={(event) => setDemand(event.target.value)}
@@ -433,7 +443,7 @@ function App() {
           <div className="container">
             <div className="section-head center">
               <span className="pill">Método Renovera</span>
-              <h2>Da dúvida técnica até o protocolo aprovado.</h2>
+              <h2>Da dúvida técnica ao protocolo preparado para análise.</h2>
               <p>
                 Uma condução clara entre levantamento de dados, diagnóstico, projeto,
                 documentação e interface técnica com a concessionária.
@@ -452,28 +462,17 @@ function App() {
           </div>
         </section>
 
-        <section className="final-cta">
-          <div className="container final-card">
-            <span className="pill pill-dark">Aprovação com rigor técnico</span>
-            <h2>Evite reprovações, exigências sucessivas e atrasos na entrada de operação.</h2>
-            <p>
-              Antes de protocolar ou investir em adequações, fale com quem entende
-              de projeto, proteção, concessionária e regulação.
-            </p>
-            <div className="final-actions">
-              <button className="btn btn-secondary" onClick={() => openLeadModal("method")}>
-                Quero aprovar minha infraestrutura
-                <Workflow size={18} />
-              </button>
-              <a className="btn btn-primary" href={whatsappLink} target="_blank" rel="noreferrer">
-                Chamar no WhatsApp técnico
-                <Phone size={18} />
-              </a>
-            </div>
-          </div>
-        </section>
+        <FinalParallaxCta
+          eyebrow="Aprovação com rigor técnico"
+          title="Prepare sua infraestrutura para a análise da concessionária."
+          description="Antes de protocolar ou investir em adequações, valide o projeto, a proteção, a documentação e as interfaces regulatórias."
+          imageSrc={`${import.meta.env.BASE_URL}images/official/projetos/projects-substation-engineering.webp`}
+          imagePosition="center 54%"
+          primaryAction={{ label: "Quero aprovar minha infraestrutura", onClick: () => openLeadModal("final_cta") }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com um engenheiro", external: true, onClick: () => trackWhatsapp("final_cta") }}
+        />
       </main>
-      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackWhatsapp("footer")} />
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} onWhatsappClick={() => trackWhatsapp("footer")} />
 
       <FloatingWhatsApp href={whatsappLink} onClick={() => trackWhatsapp("floating_button")} />
       <PageProgress />
@@ -519,6 +518,19 @@ function LeadModal({
     telefone: ""
   });
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   function updateForm(field: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
   }
@@ -550,7 +562,9 @@ function LeadModal({
   }
 
   return (
-    <div className="modal-backdrop" role="presentation">
+    <div className="modal-backdrop" role="presentation" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}>
       <div className="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
         <div className="modal-head">
           <div>
@@ -561,7 +575,7 @@ function LeadModal({
               demanda, concessionária, entrada de energia e escopo regulatório.
             </p>
           </div>
-          <button className="modal-close" onClick={onClose} aria-label="Fechar">
+          <button className="modal-close" type="button" onClick={onClose} aria-label="Fechar">
             <X size={22} />
           </button>
         </div>
@@ -569,19 +583,19 @@ function LeadModal({
         <form className="modal-form" onSubmit={handleSubmit}>
           <label>
             <span>Empresa</span>
-            <input name="empresa" autoComplete="organization" required value={form.empresa} onChange={(event) => updateForm("empresa", event.target.value)} placeholder="Nome da empresa" />
+            <input id="lead-empresa" name="empresa" autoComplete="organization" autoFocus required value={form.empresa} onChange={(event) => updateForm("empresa", event.target.value)} placeholder="Nome da empresa" />
           </label>
           <label>
             <span>E-mail corporativo</span>
-            <input name="email" autoComplete="email" required type="email" value={form.email} onChange={(event) => updateForm("email", event.target.value)} placeholder="engenharia@empresa.com.br" />
+            <input id="lead-email" name="email" autoComplete="email" required type="email" value={form.email} onChange={(event) => updateForm("email", event.target.value)} placeholder="engenharia@empresa.com.br" />
           </label>
           <label>
             <span>CNPJ</span>
-            <input name="cnpj" inputMode="numeric" required value={form.cnpj} onChange={(event) => updateForm("cnpj", event.target.value)} placeholder="00.000.000/0000-00" />
+            <input id="lead-cnpj" name="cnpj" inputMode="numeric" required value={form.cnpj} onChange={(event) => updateForm("cnpj", event.target.value)} placeholder="00.000.000/0000-00" />
           </label>
           <label>
             <span>Telefone de contato</span>
-            <input name="telefone" type="tel" autoComplete="tel" required value={form.telefone} onChange={(event) => updateForm("telefone", event.target.value)} placeholder="(00) 00000-0000" />
+            <input id="lead-telefone" name="telefone" type="tel" inputMode="tel" autoComplete="tel" required value={form.telefone} onChange={(event) => updateForm("telefone", event.target.value)} placeholder="(00) 00000-0000" />
           </label>
 
           <div className="modal-summary">

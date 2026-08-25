@@ -193,7 +193,7 @@ button { cursor: pointer; }
   max-width: 840px;
   font-size: clamp(3.2rem, 6vw, 6.5rem);
   line-height: 0.9;
-  letter-spacing: -0.085em;
+  letter-spacing: 0;
 }
 
 .hero-copy p {
@@ -261,7 +261,7 @@ button { cursor: pointer; }
   margin-bottom: 18px;
 }
 
-.engineering-top span { font-weight: 950; }
+.engineering-top span { font-weight: 900; }
 .engineering-top strong {
   padding: 7px 12px;
   border-radius: 999px;
@@ -304,7 +304,7 @@ button { cursor: pointer; }
   background: rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(10px);
   color: #ffffff;
-  font-weight: 950;
+  font-weight: 900;
   font-size: 0.84rem;
 }
 
@@ -415,7 +415,7 @@ button { cursor: pointer; }
   margin: 18px 0 14px;
   font-size: clamp(2.4rem, 4.8vw, 5rem);
   line-height: 0.96;
-  letter-spacing: -0.07em;
+  letter-spacing: 0;
   color: var(--text);
 }
 
@@ -470,7 +470,7 @@ button { cursor: pointer; }
   margin: 0 0 12px;
   font-size: 1.35rem;
   line-height: 1.12;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .service-card p {
@@ -485,7 +485,7 @@ button { cursor: pointer; }
   border: 0;
   background: transparent;
   color: var(--green);
-  font-weight: 950;
+  font-weight: 900;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -728,7 +728,7 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
   max-width: 980px;
   font-size: clamp(2.5rem, 5.5vw, 5.6rem);
   line-height: 0.94;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
 }
 
 .final-card p {
@@ -835,7 +835,7 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
   margin: 0 0 10px;
   font-size: 2rem;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
 }
 
 .modal-head p { margin: 0; color: var(--muted); line-height: 1.55; }
@@ -903,7 +903,7 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
   .btn { width: 100%; }
   .hero-stats, .trust-grid, .services-grid, .sector-grid, .process-grid, .radio-grid, .modal-summary, .engineering-list { grid-template-columns: 1fr; }
   .section { padding: 64px 0; }
-  .section-head h2, .final-card h2 { letter-spacing: -0.055em; }
+  .section-head h2, .final-card h2 { letter-spacing: 0; }
   .checker-card, .checker-form, .checker-result, .lead-modal { border-radius: 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
 }
@@ -1078,3 +1078,44 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
 @media (max-width: 760px) { .visual-proof { padding: 64px 0; } .visual-proof-grid { grid-template-columns: 1fr; gap: 28px; } .visual-proof-media { grid-template-columns: 1fr; } .visual-proof-media img:last-child { transform: none; } }
 .brand span { font-size: .72rem; font-weight: 900; letter-spacing: .06em; white-space: nowrap; }
 @media (max-width: 760px) { .brand span { font-size: .6rem; } }
+
+.service-toggle { width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: center; margin: 0 !important; color: inherit !important; text-align: left; }
+.service-toggle .icon-box { margin: 0; }
+.service-toggle h3 { margin: 0; }
+.service-toggle-icon { display: none; }
+.service-content { display: flex; flex: 1; flex-direction: column; margin-top: 20px; }
+.service-content > button { align-self: flex-start; }
+
+@media (max-width: 680px) {
+  .service-card { min-height: 0; padding: 0; overflow: hidden; border-radius: 8px; }
+  .service-card:hover { transform: none; }
+  .service-toggle { padding: 16px !important; }
+  .service-toggle .icon-box { width: 44px; height: 44px; }
+  .service-toggle h3 { font-size: 1.05rem; line-height: 1.25; }
+  .service-toggle-icon { display: block; transition: transform 180ms ease; }
+  .service-card.active .service-toggle-icon { transform: rotate(90deg); }
+  .service-content { display: none; margin: 0; padding: 0 16px 18px; }
+  .service-card.active .service-content { display: flex; }
+}
+
+@media (max-width: 680px) {
+  .sector-grid, .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .sector-card, .process-card { padding: 14px 12px; border-radius: 8px; }
+  .sector-card svg { width: 22px; height: 22px; }
+  .sector-card h3, .process-card h3 { margin: 10px 0 7px; font-size: .98rem; line-height: 1.2; }
+  .sector-card p, .process-card p { font-size: .8rem; line-height: 1.42; }
+  .process-card > strong { font-size: .92rem; }
+  .checker-card { gap: 10px; padding: 10px; border-radius: 8px; }
+  .checker-form, .checker-result { padding: 14px; border-radius: 8px; }
+  .checker-form { gap: 13px; }
+  .radio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  .radio-grid button { min-height: 44px; padding: 5px; border-radius: 8px; font-size: .78rem; }
+  .checker-result { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .checker-result > span, .checker-result > .result-box, .checker-result > .btn { grid-column: 1 / -1; }
+  .checker-result > span { margin-bottom: 2px; }
+  .data-box { margin: 0; padding: 11px; border-radius: 8px; }
+  .data-box small { font-size: .68rem; }
+  .data-box strong { font-size: .95rem; }
+  .result-box { margin: 2px 0; padding: 13px; border-radius: 8px; }
+  .result-box p { font-size: .82rem; line-height: 1.42; }
+}

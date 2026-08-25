@@ -4,32 +4,32 @@ import LiveEditor from "./LiveEditor";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const whatsappLink = buildWhatsappUrl(
-  "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
+  "Olá, Renovera. Quero solicitar uma análise técnica para um caso regulatório no setor elétrico."
 );
-const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FinalParallaxCta, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const services = [
   {
     number: "01",
-    title: "Defesa Contra Inversão de Fluxo de Potência",
+    title: "Defesa contra inversão de fluxo de potência",
     text: "Pareceres técnicos e contestações jurídicas fundamentadas para reverter reprovações de microgeração e minigeração indeferidas sem demonstração técnica suficiente.",
-    cta: "Quero reverter uma negativa"
+    cta: "Contestar uma negativa"
   },
   {
     number: "02",
-    title: "Parecer Independente e Auditoria de Rede",
+    title: "Parecer independente e auditoria de rede",
     text: "Auditoria de estudos de fluxo, curvas de carga, ponto de análise, memória de cálculo e premissas utilizadas pela distribuidora no parecer técnico.",
     cta: "Auditar estudo da concessionária"
   },
   {
     number: "03",
-    title: "Engenharia Consultiva e Regulação ANEEL",
+    title: "Engenharia consultiva e regulação ANEEL",
     text: "Interpretação estratégica da REN 1000/2021, REN 1098/2024, PRODIST e procedimentos aplicáveis para sustentar defesas administrativas robustas.",
     cta: "Validar enquadramento regulatório"
   },
   {
     number: "04",
-    title: "Riscos Operacionais e Contratos de Energia",
+    title: "Riscos operacionais e contratos de energia",
     text: "Análise técnica e jurídica de contratos do Grupo A, demanda contratada, exposição tarifária, multas, energia reativa e riscos de infraestrutura.",
     cta: "Mapear risco do contrato"
   }
@@ -59,6 +59,18 @@ function App() {
   const [cnpj, setCnpj] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [compactServices, setCompactServices] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches
+  );
+  const [expandedService, setExpandedService] = useState(0);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 640px)");
+    const syncLayout = () => setCompactServices(media.matches);
+    syncLayout();
+    media.addEventListener("change", syncLayout);
+    return () => media.removeEventListener("change", syncLayout);
+  }, []);
 
   const diagnostic = useMemo(() => {
     let score = 42;
@@ -109,7 +121,8 @@ function App() {
 
   return (
     <div className="page">
-      <ProductHeader product="CONSULTORIA REGULATÓRIA" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <ProductHeader product="REGULATÓRIA" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="header" contentClassName="container headerInner">
 
           <nav className="nav">
             <a href="#atuacao">Áreas de Atuação</a>
@@ -118,10 +131,10 @@ function App() {
             <a href="#triagem">Diagnóstico</a>
           </nav>
 
-          <a className="headerButton" href="#triagem">Agendar Consulta Estratégica</a>
+          <a className="headerButton" href="#triagem">Solicitar análise técnica do caso</a>
       </ProductHeader>
 
-      <main>
+      <main id="conteudo">
         <section className="hero" id="inicio">
           <div className="heroAura" />
           <div className="container heroGrid">
@@ -134,7 +147,7 @@ function App() {
               </p>
 
               <div className="heroActions">
-                <a className="primaryButton" href="#triagem">Analisar meu caso regulatório</a>
+                <a className="primaryButton" href="#triagem">Solicitar análise técnica do caso</a>
                 <a className="secondaryButton" href="#atuacao">Ver linhas de defesa</a>
               </div>
 
@@ -203,11 +216,11 @@ function App() {
           title="Uma defesa técnica se sustenta em fatos, normas e contexto."
           description="A vistoria, os documentos e os indicadores são organizados em uma leitura independente para transformar uma negativa ou risco regulatório em uma estratégia objetiva."
           points={["Auditoria documental", "Premissas rastreáveis", "Defesa administrativa"]}
-          primaryAction={{ href: "#triagem", label: "Solicitar análise técnica" }}
+          primaryAction={{ href: "#triagem", label: "Solicitar análise técnica do caso" }}
           secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "combined_insight" }) }}
           images={[
             { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe técnica inspecionando painéis solares em uma cobertura", width: 1600, height: 900 },
-            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`, alt: "Especialista avaliando indicadores tecnicos de energia no escritorio", width: 1600, height: 900 }
+            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`, alt: "Especialista avaliando indicadores técnicos de energia no escritório", width: 1600, height: 900 }
           ]}
         />
 
@@ -238,7 +251,7 @@ function App() {
               <div className="formGrid">
                 <label>
                   Concessionária envolvida
-                  <select name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
+                  <select id="reg-utility" name="utility" value={utility} onChange={(event) => setUtility(event.target.value)} required>
                     <option>CPFL</option>
                     <option>Neoenergia Elektro</option>
                     <option>Energisa</option>
@@ -249,7 +262,7 @@ function App() {
 
                 <label>
                   Tipo de restrição
-                  <select name="restriction" value={restriction} onChange={(event) => setRestriction(event.target.value)}>
+                  <select id="reg-restriction" name="restriction" value={restriction} onChange={(event) => setRestriction(event.target.value)} required>
                     <option>Inversão de Fluxo</option>
                     <option>Reprovação de Padrão</option>
                     <option>Demanda Incompatível</option>
@@ -259,30 +272,30 @@ function App() {
 
                 <label>
                   Potência / demanda do ativo
-                  <input name="power" type="number" min="0" step="0.01" value={power} onChange={(event) => setPower(Number(event.target.value))} />
+                  <input id="reg-power" name="power" type="number" min="0" step="0.01" inputMode="decimal" value={power} onChange={(event) => setPower(Number(event.target.value))} required />
                 </label>
 
                 <label>
                   E-mail corporativo
-                  <input name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="diretoria@empresa.com.br" required />
+                  <input id="reg-email" name="email" type="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="diretoria@empresa.com.br" required />
                 </label>
 
                 <label>
                   CNPJ
-                  <input name="cnpj" type="text" inputMode="numeric" value={cnpj} onChange={(event) => setCnpj(event.target.value)} placeholder="00.000.000/0001-00" required />
+                  <input id="reg-cnpj" name="cnpj" type="text" inputMode="numeric" autoComplete="organization" value={cnpj} onChange={(event) => setCnpj(event.target.value)} placeholder="00.000.000/0001-00" required />
                 </label>
 
                 <label>
                   Telefone / WhatsApp
-                  <input name="phone" type="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="(00) 00000-0000" required />
+                  <input id="reg-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="(00) 00000-0000" required />
                 </label>
               </div>
 
               <button className="formButton" type="submit">Solicitar análise técnica do caso</button>
-              <a className="whatsButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "screening" })}>Prefiro enviar pelo WhatsApp</a>
+              <a className="whatsButton" href={whatsappLink} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "screening" })}>Prefiro enviar pelo WhatsApp</a>
 
               {submitted && (
-                <div className="successBox">
+                <div className="successBox" role="status" aria-live="polite">
                   <strong>Triagem registrada.</strong>
                   <p>Os dados foram organizados e o WhatsApp foi aberto para você concluir o envio à equipe Renovera.</p>
                 </div>
@@ -311,12 +324,29 @@ function App() {
             </div>
 
             <div className="servicesGrid">
-              {services.map((service) => (
+              {services.map((service, index) => (
                 <article className="serviceCard" key={service.title}>
-                  <span>{service.number}</span>
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                  <a href="#triagem">{service.cta} →</a>
+                  <button
+                    type="button"
+                    className="serviceSummary"
+                    aria-expanded={!compactServices || expandedService === index}
+                    aria-controls={`service-content-${index}`}
+                    onClick={() => setExpandedService((current) => current === index ? -1 : index)}
+                  >
+                    <span className="serviceNumber">{service.number}</span>
+                    <h3>{service.title}</h3>
+                    <span className="serviceToggle" aria-hidden="true">
+                      {!compactServices || expandedService === index ? "−" : "+"}
+                    </span>
+                  </button>
+                  <div
+                    className="serviceCardContent"
+                    id={`service-content-${index}`}
+                    hidden={compactServices && expandedService !== index}
+                  >
+                    <p>{service.text}</p>
+                    <a href="#triagem">{service.cta}</a>
+                  </div>
                 </article>
               ))}
             </div>
@@ -327,7 +357,7 @@ function App() {
           <div className="container frameworkShell">
             <div className="frameworkIntro">
               <span className="eyebrow light">Arsenal regulatório</span>
-              <h2>Transformamos norma técnica em argumento de destravamento.</h2>
+              <h2>Conectamos norma técnica ao argumento regulatório.</h2>
               <p>
                 A Renovera cruza legislação, engenharia de rede e prova documental para mostrar quando a negativa da
                 distribuidora não demonstra nexo causal, transparência ou alternativa técnica adequada.
@@ -335,34 +365,29 @@ function App() {
             </div>
 
             <div className="frameworkGrid">
-              <div className="lawCard featured">
-                <span>Estratégia central</span>
-                <h3>Da reprovação genérica à tese técnica defensável.</h3>
+              <details className="lawCard featured" open>
+                <summary><span>Estratégia central</span><h3>Da reprovação genérica à tese técnica defensável.</h3></summary>
                 <p>
                   O estudo é reavaliado por ponto de análise, curva de carga, memória de cálculo, premissa de geração,
                   carregamento, tensão e impacto real no sistema.
                 </p>
-              </div>
-              <div className="lawCard">
-                <span>Art. 73</span>
-                <h3>Alternativas e menor custo global</h3>
+              </details>
+              <details className="lawCard">
+                <summary><span>Art. 73</span><h3>Alternativas e menor custo global</h3></summary>
                 <p>Exigência de avaliação de soluções técnicas viáveis antes de impor restrições, obras ou custos desproporcionais.</p>
-              </div>
-              <div className="lawCard">
-                <span>Art. 78</span>
-                <h3>Transparência do estudo</h3>
+              </details>
+              <details className="lawCard">
+                <summary><span>Art. 78</span><h3>Transparência do estudo</h3></summary>
                 <p>Pedido de premissas, dados, memória de cálculo e fundamentação técnica auditável.</p>
-              </div>
-              <div className="lawCard">
-                <span>§1º Art. 73</span>
-                <h3>Nexo causal da inversão</h3>
+              </details>
+              <details className="lawCard">
+                <summary><span>§1º Art. 73</span><h3>Nexo causal da inversão</h3></summary>
                 <p>A restrição precisa decorrer da conexão solicitada, não de condição preexistente imputada ao acessante.</p>
-              </div>
-              <div className="lawCard">
-                <span>PRODIST</span>
-                <h3>Qualidade e impacto real</h3>
+              </details>
+              <details className="lawCard">
+                <summary><span>PRODIST</span><h3>Qualidade e impacto real</h3></summary>
                 <p>Análise de tensão, carregamento, proteção, qualidade do produto e operação da rede.</p>
-              </div>
+              </details>
             </div>
           </div>
         </section>
@@ -397,27 +422,20 @@ function App() {
           </div>
         </section>
 
-        <section className="finalCta">
-          <div className="container finalCtaBox">
-            <div className="finalCtaContent">
-              <span className="eyebrow">Defesa antes do prejuízo</span>
-              <h2>Antes de aceitar a negativa, peça uma segunda leitura técnica.</h2>
-              <p>
-                Envie o parecer da concessionária para uma análise preliminar. A Renovera verifica indícios de falha técnica,
-                ausência de memória de cálculo, erro de ponto de análise e possibilidade de contestação administrativa.
-              </p>
-            </div>
-            <div className="finalCtaActions">
-              <a className="primaryButton" href="#triagem">Analisar minha negativa agora</a>
-              <a className="secondaryButton" href={whatsappLink} target="_blank">Falar com um especialista</a>
-            </div>
-          </div>
-        </section>
+        <FinalParallaxCta
+          eyebrow="Defesa antes do prejuízo"
+          title="Antes de aceitar a negativa, solicite uma segunda leitura técnica."
+          description="Envie o parecer da concessionária. A Renovera verifica a fundamentação, as premissas do estudo e a possibilidade de contestação administrativa."
+          imageSrc={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp`}
+          imagePosition="center 52%"
+          primaryAction={{ href: "#triagem", label: "Solicitar análise técnica do caso", onClick: () => trackEvent("select_content", { product: "regulatoria", content_type: "screening", placement: "final_cta" }) }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "final_cta" }) }}
+        />
       </main>
 
-      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} privacyHref="/politica-de-privacidade" />
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={whatsappLink} onWhatsappClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "footer" })} />
 
-      <FloatingWhatsApp href={whatsappLink} />
+      <FloatingWhatsApp href={whatsappLink} onClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "floating_button" })} />
       <PageProgress />
       <ScrollToTop />
       <LiveEditor namespace="renovera-regulatoria-design" />

@@ -193,7 +193,7 @@ a {
   margin: 18px 0 14px;
   font-size: clamp(2.4rem, 4.8vw, 5rem);
   line-height: 0.96;
-  letter-spacing: -0.07em;
+  letter-spacing: 0;
   color: var(--text);
 }
 
@@ -245,8 +245,8 @@ a {
   margin: 20px 0 22px;
   font-size: clamp(3rem, 5.2vw, 5.15rem);
   line-height: 0.96;
-  letter-spacing: -0.075em;
-  font-weight: 950;
+  letter-spacing: 0;
+  font-weight: 900;
 }
 
 .hero-description {
@@ -380,7 +380,7 @@ a {
   color: var(--text);
   font-size: 2.25rem;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
 }
 
 .solar-metric.main strong {
@@ -431,7 +431,7 @@ a {
   place-items: center;
   background: linear-gradient(135deg, #f2d65c, #7eaa35);
   color: #123a08;
-  font-weight: 950;
+  font-weight: 900;
 }
 
 .hero-side-card small {
@@ -535,7 +535,7 @@ a {
 .calculator-title h3 {
   margin: 0;
   font-size: 1.7rem;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
   color: var(--text);
 }
 
@@ -626,7 +626,7 @@ a {
   margin-top: 7px;
   font-size: 2.3rem;
   line-height: 1;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
   color: var(--text);
 }
 
@@ -670,7 +670,7 @@ a {
   color: #ffffff;
   font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 0.95;
-  letter-spacing: -0.07em;
+  letter-spacing: 0;
 }
 
 .margin-card p {
@@ -751,7 +751,7 @@ a {
 .generation-bar em {
   font-style: normal;
   font-size: 0.64rem;
-  font-weight: 950;
+  font-weight: 900;
   color: #ffffff;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
   writing-mode: vertical-rl;
@@ -809,7 +809,7 @@ a {
   place-items: center;
   background: #e8f0ea;
   color: var(--text);
-  font-weight: 950;
+  font-weight: 900;
   font-size: 1.2rem;
 }
 
@@ -817,7 +817,7 @@ a {
   margin: 0 0 10px;
   color: var(--text);
   font-size: 1.35rem;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .app-card p {
@@ -857,14 +857,14 @@ a {
   border-radius: 999px;
   background: var(--gold);
   color: #342900;
-  font-weight: 950;
+  font-weight: 900;
   margin-bottom: 16px;
 }
 
 .process-card h3 {
   margin: 0 0 8px;
   color: var(--text);
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .process-card p {
@@ -890,7 +890,7 @@ a {
   margin: 18px 0 16px;
   font-size: clamp(2.8rem, 5vw, 4.6rem);
   line-height: 0.98;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
 }
 
 .faq-copy p {
@@ -925,7 +925,7 @@ a {
   justify-content: space-between;
   gap: 18px;
   color: var(--text);
-  font-weight: 950;
+  font-weight: 900;
   text-align: left;
   cursor: pointer;
 }
@@ -933,7 +933,7 @@ a {
 .faq-icon {
   color: var(--text);
   font-size: 1.3rem;
-  font-weight: 950;
+  font-weight: 900;
 }
 
 .faq-answer {
@@ -966,7 +966,7 @@ a {
   max-width: 520px;
   font-size: clamp(2.6rem, 5vw, 4.4rem);
   line-height: 0.94;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
 }
 
 .development-left p {
@@ -1286,7 +1286,7 @@ a {
   margin: 4px 0 0;
   font-size: clamp(2.2rem, 4vw, 4.5rem);
   line-height: 0.95;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
 }
 
 .editor-topbar p {
@@ -1315,7 +1315,7 @@ a {
 .editor-card h2 {
   margin: 0 0 18px;
   font-size: 2rem;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 .editor-card h3 {
@@ -1452,7 +1452,7 @@ a {
   background: rgba(13, 106, 53, 0.08);
   color: var(--green);
   font-size: 0.72rem;
-  font-weight: 950;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
@@ -1466,7 +1466,7 @@ a {
   background: #fff7d7;
   border: 1px solid rgba(233, 185, 35, 0.46);
   color: #6e4b00;
-  font-weight: 950;
+  font-weight: 900;
   font-size: 0.78rem;
 }
 
@@ -1713,7 +1713,7 @@ a {
   color: var(--text);
   font-size: 2.2rem;
   line-height: 0.95;
-  letter-spacing: -0.06em;
+  letter-spacing: 0;
 }
 
 .scene-energy-card p {
@@ -1898,7 +1898,7 @@ a {
   display: grid;
   place-items: center;
   color: var(--text);
-  font-weight: 950;
+  font-weight: 900;
 }
 
 .inverter-tower small {
@@ -1969,7 +1969,7 @@ a {
 
 .farm-savings-badge small {
   color: var(--muted);
-  font-weight: 950;
+  font-weight: 900;
   display: block;
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -1980,7 +1980,7 @@ a {
   margin-top: 4px;
   color: var(--text);
   font-size: 1.35rem;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
 }
 
 .hero-flow-row {
@@ -2035,6 +2035,17 @@ a {
 
 .brand span { font-size: .72rem; font-weight: 900; letter-spacing: .06em; color: var(--text); white-space: nowrap; }
 @media (max-width: 760px) { .brand span { font-size: .6rem; } }
+
+.simulation-disclaimer { margin: 0; color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.calculator-details { border: 1px solid var(--border); border-radius: 8px; background: rgba(255,255,255,.72); }
+.calculator-details summary { padding: 15px 17px; color: var(--green); font-weight: 800; cursor: pointer; }
+.calculator-details[open] summary { border-bottom: 1px solid var(--border); }
+.calculator-details .result-grid { padding: 14px; }
+
+@media (max-width: 680px) {
+  .calculator-details summary { padding: 14px; }
+  .calculator-details .result-grid { padding: 12px; }
+}
 
 /* Product signature: field engineering with a live generation overlay. */
 .solar-panel-wrap {
@@ -2148,4 +2159,44 @@ a {
   .visual-proof-grid { grid-template-columns: 1fr; gap: 28px; }
   .visual-proof-media { grid-template-columns: 1fr; }
   .visual-proof-media img:last-child { transform: none; }
+}
+
+@media (max-width: 680px) {
+  .calculator-section,
+  .applications-section,
+  .process-section,
+  .faq-section { padding: 44px 0; }
+
+  .calculator-box { gap: 10px; padding: 10px; border-radius: 8px; }
+  .calculator-left,
+  .calculator-right { padding: 14px; border-radius: 8px; }
+  .calculator-title { gap: 9px; margin-bottom: 14px; }
+  .calculator-title h3 { font-size: 1.35rem; }
+  .input-grid,
+  .result-grid,
+  .applications-grid,
+  .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .input-group.full { grid-column: 1 / -1; }
+  .input-group label { min-height: 2.4em; font-size: .78rem; line-height: 1.2; }
+  .input-group input,
+  .input-group select { min-height: 44px; padding: 9px 10px; font-size: .84rem; }
+  .tariff-note { margin-top: 12px; padding: 12px; font-size: .82rem; }
+  .result-card { min-height: 0; padding: 13px; border-radius: 8px; }
+  .result-card strong { font-size: 1.55rem; }
+  .result-card p { margin-top: 7px; font-size: .78rem; }
+  .margin-card { min-height: 0; padding: 18px 16px; border-radius: 8px; }
+  .margin-card strong { font-size: 2.4rem; }
+  .generation-card { padding: 13px; border-radius: 8px; }
+  .generation-bars { height: 126px; }
+
+  .app-card { min-height: 0; padding: 15px 13px; border-radius: 8px; }
+  .app-icon { width: 38px; height: 38px; margin-bottom: 11px; border-radius: 8px; font-size: .95rem; }
+  .app-card h3 { margin-bottom: 7px; font-size: 1rem; line-height: 1.18; }
+  .app-card p { font-size: .82rem; line-height: 1.42; }
+  .process-card { min-height: 0; padding: 14px 12px; border-radius: 8px; }
+  .process-card span { min-width: 30px; height: 25px; margin-bottom: 10px; }
+  .process-card h3 { font-size: .98rem; line-height: 1.2; }
+  .process-card p { font-size: .8rem; line-height: 1.42; }
+  .faq-split { gap: 20px; }
+  .solar-panel-wrap { min-height: 440px; }
 }

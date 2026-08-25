@@ -5,7 +5,7 @@ import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
-const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FinalParallaxCta, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const CONFIG = {
   modulePowerWp: 585,
@@ -138,14 +138,24 @@ const seasonalProfileByUf: Record<UfKey, number[]> = {
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const answerId = `faq-${question.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
   return (
     <div className={`faq-item ${open ? "open" : ""}`}>
-      <button className="faq-question" onClick={() => setOpen(!open)} type="button">
+      <button
+        className="faq-question"
+        aria-expanded={open}
+        aria-controls={answerId}
+        onClick={() => {
+          setOpen(!open);
+          if (!open) trackEvent("faq_open", { product: "solar", question });
+        }}
+        type="button"
+      >
         <span>{question}</span>
         <span className="faq-icon">{open ? "−" : "+"}</span>
       </button>
-      {open && <div className="faq-answer">{answer}</div>}
+      {open && <div className="faq-answer" id={answerId}>{answer}</div>}
     </div>
   );
 }
@@ -294,7 +304,7 @@ function App() {
     whatsappNumber
   );
   const genericWhatsappLink = buildWhatsappUrl(
-    "Olá, quero avaliar um projeto de energia solar com a Renovera.",
+    "Olá, Renovera. Quero solicitar uma análise para um projeto de energia solar.",
     whatsappNumber
   );
 
@@ -382,7 +392,8 @@ function App() {
 
   return (
     <div className="page" style={{ "--accent": siteConfig.visual.accentColor } as React.CSSProperties}>
-      <ProductHeader product="ENERGIA SOLAR" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="site-header" contentClassName="container nav">
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <ProductHeader product="SOLAR" logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} homeHref={RENOVERA_HOME} className="site-header" contentClassName="container nav">
 
           <nav className="nav-links" aria-label="Menu principal">
             <a href="#calculadora">Calculadora</a>
@@ -396,7 +407,7 @@ function App() {
           </a>
       </ProductHeader>
 
-      <main id="top">
+      <main id="conteudo">
         <section className="hero solar-hero">
           <div className="container hero-grid">
             <div className="hero-copy">
@@ -410,7 +421,7 @@ function App() {
                 <a className="btn btn-primary" href="#calculadora" onClick={() => trackEvent("select_content", { product: "solar", content_type: "solar_calculator", placement: "hero" })}>
                   {siteConfig.hero.primaryButton}
                 </a>
-                <a className="btn btn-secondary" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("hero")} target="_blank" rel="noreferrer">
+                <a className="btn btn-secondary" href={genericWhatsappLink} onClick={() => trackGenericWhatsapp("hero")} target="_blank" rel="noopener noreferrer">
                   {siteConfig.hero.secondaryButton}
                 </a>
               </div>
@@ -502,11 +513,10 @@ function App() {
           title="Um projeto solar claro antes de cada investimento."
           description="A leitura do local, o dimensionamento e o plano de implantação integram o mesmo estudo. Assim, você entende o contexto, valida as premissas e avança com segurança."
           points={["Leitura do local", "Dimensionamento", "Plano de implantação"]}
-          primaryAction={{ href: "#calculadora", label: "Simular meu sistema" }}
-          secondaryAction={{ href: genericWhatsappLink, label: "Falar com especialista", external: true, onClick: () => trackGenericWhatsapp("combined_insight") }}
+          primaryAction={{ href: "#calculadora", label: "Simular meu sistema solar" }}
+          secondaryAction={{ href: genericWhatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackGenericWhatsapp("combined_insight") }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp 1600w`, alt: "Consultoria para sistema agrovoltaico em propriedade rural", width: 1600, height: 900 },
-            { src: `${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp 1600w`, alt: "Cliente acompanhando informacoes de um projeto solar residencial", width: 1600, height: 900 }
+            { src: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp 1600w`, alt: "Consultoria para sistema agrovoltaico em propriedade rural", width: 1600, height: 900 }
           ]}
         />
 
@@ -653,12 +663,6 @@ function App() {
                   </div>
 
                   <div className="result-card">
-                    <span>QUANTIDADE DE MÓDULOS</span>
-                    <strong>{formatNumber(result.modules)}</strong>
-                    <p>Módulos de {formatNumber(CONFIG.modulePowerWp)} Wp.</p>
-                  </div>
-
-                  <div className="result-card">
                     <span>GERAÇÃO MÉDIA MENSAL</span>
                     <strong>{formatNumber(result.monthlyGeneration)} kWh</strong>
                     <p>{formatNumber(result.annualGeneration)} kWh/ano estimados.</p>
@@ -670,17 +674,6 @@ function App() {
                     <p>{formatCurrency(result.annualSavings)} por ano.</p>
                   </div>
 
-                  <div className="result-card">
-                    <span>ÁREA ESTIMADA</span>
-                    <strong>{formatDecimal(result.area, 1)} m²</strong>
-                    <p>Área aproximada ocupada pelos módulos.</p>
-                  </div>
-
-                  <div className="result-card">
-                    <span>DISPONIBILIDADE</span>
-                    <strong>{formatNumber(minimumAvailability)} kWh</strong>
-                    <p>Calculada pela tensão selecionada.</p>
-                  </div>
                 </div>
 
                 <div className="margin-card solar-payback-card">
@@ -692,10 +685,31 @@ function App() {
                   </p>
                 </div>
 
+                <p className="simulation-disclaimer">Simulação indicativa. Valores sujeitos à análise técnica e comercial.</p>
 
+                <details className="calculator-details">
+                  <summary>Ver detalhes técnicos da simulação</summary>
+                  <div className="result-grid">
+                    <div className="result-card">
+                      <span>QUANTIDADE DE MÓDULOS</span>
+                      <strong>{formatNumber(result.modules)}</strong>
+                      <p>Módulos de {formatNumber(CONFIG.modulePowerWp)} Wp.</p>
+                    </div>
+                    <div className="result-card">
+                      <span>ÁREA ESTIMADA</span>
+                      <strong>{formatDecimal(result.area, 1)} m²</strong>
+                      <p>Área aproximada ocupada pelos módulos.</p>
+                    </div>
+                    <div className="result-card">
+                      <span>DISPONIBILIDADE</span>
+                      <strong>{formatNumber(minimumAvailability)} kWh</strong>
+                      <p>Calculada pela tensão selecionada.</p>
+                    </div>
+                  </div>
+                </details>
 
                 <div className="summary-actions">
-                  <a className="btn btn-secondary" href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noreferrer">
+                  <a className="btn btn-secondary" href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noopener noreferrer">
                     Enviar simulação no WhatsApp
                   </a>
                   <button className="btn btn-outline" onClick={copySummary} type="button">
@@ -763,29 +777,19 @@ function App() {
           </div>
         </section>
 
-        <section className="development-section contact-section" id="contato">
-          <div className="container">
-            <div className="development-card contact-card">
-              <div className="development-left">
-                <div className="pill pill-dark small">{siteConfig.contact.eyebrow}</div>
-                <h2>{siteConfig.contact.title}</h2>
-                <p>{siteConfig.contact.subtitle}</p>
-              </div>
-
-              <div className="development-right contact-actions">
-                <a className="btn btn-secondary" href={whatsappLink} onClick={handleProtectedWhatsapp} target="_blank" rel="noreferrer">
-                  {siteConfig.contact.primaryButton}
-                </a>
-                <button className="btn btn-primary" onClick={copySummary} type="button">
-                  {siteConfig.contact.secondaryButton}
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FinalParallaxCta
+          id="contato"
+          eyebrow={siteConfig.contact.eyebrow}
+          title={siteConfig.contact.title}
+          description={siteConfig.contact.subtitle}
+          imageSrc={`${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation.webp`}
+          imagePosition="center 56%"
+          primaryAction={{ href: whatsappLink, label: "Solicitar análise do projeto", external: true, onClick: handleProtectedWhatsapp }}
+          secondaryAction={{ href: genericWhatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackGenericWhatsapp("final_cta") }}
+        />
       </main>
 
-      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={genericWhatsappLink} privacyHref="/politica-de-privacidade" onWhatsappClick={() => trackGenericWhatsapp("footer")} />
+      <SiteFooter logoSrc={`${import.meta.env.BASE_URL}logo-renovera.png`} whatsappHref={genericWhatsappLink} onWhatsappClick={() => trackGenericWhatsapp("footer")} />
 
       <PageProgress />
       <ScrollToTop />

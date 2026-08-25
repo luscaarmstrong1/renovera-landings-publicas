@@ -1,4 +1,4 @@
 ﻿User-agent: *
 Allow: /
 
-Sitemap: https://luscaarmstrong1.github.io/renovera-landings-publicas/sitemap.xml
+Sitemap: https://renovera.com.br/sitemap.xml

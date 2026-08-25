@@ -190,7 +190,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   max-width: 880px;
   font-size: clamp(3.2rem, 6.4vw, 6.65rem);
   line-height: 0.9;
-  letter-spacing: -0.085em;
+  letter-spacing: 0;
 }
 .heroContent p {
   max-width: 760px;
@@ -232,7 +232,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   color: var(--text);
 }
 .regTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.regTop span { font-weight: 950; color: var(--text); letter-spacing: -0.02em; }
+.regTop span { font-weight: 900; color: var(--text); letter-spacing: 0; }
 .regTop strong { padding: 8px 13px; border-radius: 999px; background: var(--green-soft); color: var(--green-800); font-size: 0.82rem; }
 .gridMap {
   position: relative;
@@ -260,7 +260,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: rgba(255,255,255,0.84);
   border: 1px solid rgba(0,70,38,0.12);
   font-size: 0.72rem;
-  font-weight: 950;
+  font-weight: 900;
   letter-spacing: 0.08em;
   color: var(--gold-dark);
   box-shadow: 0 12px 25px rgba(0,70,38,0.08);
@@ -276,12 +276,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .l3 { width: 190px; left: 165px; top: 174px; transform: rotate(20deg); }
 .l4 { width: 235px; left: 75px; top: 218px; transform: rotate(-28deg); }
 .casePanel { margin-top: 16px; padding: 21px; border-radius: 24px; background: linear-gradient(135deg, #fff8da, #edf8ef); border: 1px solid var(--border); }
-.casePanel span, .diagnosticCard span, .lawCard span, .compareColumn span { display: block; color: var(--muted); font-size: 0.78rem; font-weight: 950; letter-spacing: 0.06em; text-transform: uppercase; }
-.casePanel strong { display: block; margin: 8px 0 6px; color: var(--green-800); font-size: 2rem; letter-spacing: -0.06em; }
+.casePanel span, .diagnosticCard span, .lawCard span, .compareColumn span { display: block; color: var(--muted); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
+.casePanel strong { display: block; margin: 8px 0 6px; color: var(--green-800); font-size: 2rem; letter-spacing: 0; }
 .casePanel p { margin: 0; color: var(--muted); line-height: 1.55; }
 .regList { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
 .regList div { padding: 13px; border-radius: 16px; background: var(--card-soft); border: 1px solid var(--border); }
-.regList span { display: block; color: var(--gold-dark); font-size: 0.8rem; font-weight: 950; }
+.regList span { display: block; color: var(--gold-dark); font-size: 0.8rem; font-weight: 900; }
 .regList strong { display: block; margin-top: 4px; color: var(--text); font-size: 0.82rem; }
 .floatingLegal {
   position: absolute;
@@ -295,8 +295,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   box-shadow: 0 24px 55px rgba(0,30,15,0.23);
   border: 1px solid var(--border);
 }
-.floatingLegal span { display: block; color: var(--green-800); font-size: 0.75rem; text-transform: uppercase; font-weight: 950; }
-.floatingLegal strong { display: block; margin: 8px 0; font-size: 1.58rem; line-height: 1.04; letter-spacing: -0.055em; }
+.floatingLegal span { display: block; color: var(--green-800); font-size: 0.75rem; text-transform: uppercase; font-weight: 900; }
+.floatingLegal strong { display: block; margin: 8px 0; font-size: 1.58rem; line-height: 1.04; letter-spacing: 0; }
 .floatingLegal p { margin: 0; color: var(--muted); line-height: 1.45; }
 
 .authorityBar { padding: 18px 0; background: var(--green-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -307,7 +307,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: rgba(255,255,255,0.7);
   border: 1px solid var(--border);
 }
-.authorityGrid span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 950; text-transform: uppercase; }
+.authorityGrid span { display: block; color: var(--muted); font-size: 0.8rem; font-weight: 900; text-transform: uppercase; }
 .authorityGrid strong { display: block; margin-top: 6px; color: var(--text); font-size: 0.95rem; }
 
 .services, .framework, .sectors, .screening, .finalCta { padding: 78px 0; }
@@ -317,7 +317,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   margin: 16px 0 14px;
   font-size: clamp(2.35rem, 4.8vw, 4.85rem);
   line-height: 0.96;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
   color: var(--text);
 }
 .sectionHeader p, .splitHeader p, .screeningIntro p, .lawCard p, .finalCtaBox p { margin: 0; color: var(--muted); line-height: 1.78; font-size: 1.02rem; }
@@ -332,10 +332,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: 0.22s ease;
 }
 .serviceCard:hover { border-color: var(--border-strong); box-shadow: 0 24px 55px rgba(4,52,28,0.12); }
-.serviceCard span { color: var(--gold-dark); font-size: 0.9rem; font-weight: 950; }
-.serviceCard h3 { margin: 16px 0 12px; font-size: 1.65rem; line-height: 1.05; letter-spacing: -0.04em; }
+.serviceCard span { color: var(--gold-dark); font-size: 0.9rem; font-weight: 900; }
+.serviceCard h3 { margin: 16px 0 12px; font-size: 1.65rem; line-height: 1.05; letter-spacing: 0; }
 .serviceCard p { margin: 0 0 22px; color: var(--muted); line-height: 1.68; }
-.serviceCard a { color: var(--green-800); font-weight: 950; }
+.serviceCard a { color: var(--green-800); font-weight: 900; }
 
 .defense { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .defenseGrid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 34px; align-items: center; }
@@ -350,7 +350,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .compareColumn.bad { background: linear-gradient(180deg, #fffdf5, #ffffff); }
 .compareColumn.good { background: linear-gradient(180deg, #edf8ef, #ffffff); border-color: var(--border-strong); }
-.compareColumn h3 { margin: 14px 0; font-size: 1.5rem; letter-spacing: -0.04em; }
+.compareColumn h3 { margin: 14px 0; font-size: 1.5rem; letter-spacing: 0; }
 ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.72; }
 li + li { margin-top: 10px; }
 
@@ -380,7 +380,7 @@ li + li { margin-top: 10px; }
   margin: 18px 0 16px;
   font-size: clamp(2.4rem, 4.6vw, 4.7rem);
   line-height: 0.95;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
   color: var(--text);
 }
 .frameworkIntro p {
@@ -420,7 +420,7 @@ li + li { margin-top: 10px; }
   margin: 14px 0 10px;
   font-size: 1.45rem;
   line-height: 1.08;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   color: var(--text);
 }
 .lawCard.featured h3 { font-size: clamp(2rem, 3vw, 3.1rem); max-width: 800px; }
@@ -464,8 +464,8 @@ li + li { margin-top: 10px; }
   background: linear-gradient(90deg, var(--gold), var(--green));
 }
 .sectorCard:hover { border-color: var(--border-strong); box-shadow: 0 24px 55px rgba(4,52,28,0.12); }
-.sectorCard span { color: var(--gold-dark); font-weight: 950; }
-.sectorCard h3 { margin: 16px 0 14px; min-height: 76px; font-size: 1.22rem; line-height: 1.08; letter-spacing: -0.035em; }
+.sectorCard span { color: var(--gold-dark); font-weight: 900; }
+.sectorCard h3 { margin: 16px 0 14px; min-height: 76px; font-size: 1.22rem; line-height: 1.08; letter-spacing: 0; }
 .sectorCard p { margin: 0; color: var(--muted); line-height: 1.62; font-size: 0.94rem; }
 
 .screening { background: linear-gradient(180deg, #f7fbf7 0%, var(--green-soft) 100%); border-bottom: 1px solid var(--border); }
@@ -494,9 +494,9 @@ li + li { margin-top: 10px; }
 }
 .scoreCircle::before { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--white); }
 .scoreCircle strong, .scoreCircle span { position: relative; z-index: 1; color: var(--green-900); }
-.scoreCircle strong { font-size: 2.2rem; letter-spacing: -0.06em; }
+.scoreCircle strong { font-size: 2.2rem; letter-spacing: 0; }
 .scoreCircle span { margin-top: -34px; font-size: 0.8rem; font-weight: 900; }
-.diagnosticCard h3 { margin: 6px 0; color: var(--green-800); font-size: 2rem; text-transform: uppercase; letter-spacing: -0.04em; }
+.diagnosticCard h3 { margin: 6px 0; color: var(--green-800); font-size: 2rem; text-transform: uppercase; letter-spacing: 0; }
 .diagnosticCard p { margin: 0; color: var(--muted); line-height: 1.55; }
 
 .leadForm {
@@ -552,7 +552,7 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
   color: var(--white);
   font-size: clamp(2.4rem, 4.8vw, 4.65rem);
   line-height: 0.96;
-  letter-spacing: -0.075em;
+  letter-spacing: 0;
 }
 .finalCtaBox p { max-width: 760px; margin: 0; color: rgba(255,255,255,0.88); }
 .finalCtaBox .eyebrow { color: var(--white); }
@@ -609,8 +609,12 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
   border-radius: 999px;
   background: var(--gold);
   color: #382c00;
-  font-weight: 950;
+  font-weight: 900;
   box-shadow: var(--gold-shadow);
+}
+
+@media (max-width: 1080px) {
+  .nav { display: none; }
 }
 
 @media (max-width: 980px) {
@@ -815,3 +819,67 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
 @media (max-width: 760px) { .visual-proof { padding: 64px 0; } .visual-proof-grid { grid-template-columns: 1fr; gap: 28px; } .visual-proof-media { grid-template-columns: 1fr; } .visual-proof-media img:last-child { transform: none; } }
 .brand span { font-size: .72rem; font-weight: 900; letter-spacing: .06em; white-space: nowrap; }
 @media (max-width: 760px) { .brand span { font-size: .6rem; } }
+
+.lawCard summary { list-style: none; cursor: pointer; }
+.lawCard summary::-webkit-details-marker { display: none; }
+.lawCard summary::after { content: "+"; float: right; margin-top: -30px; color: var(--green-800); font-size: 1.3rem; font-weight: 800; }
+.lawCard[open] summary::after { content: "−"; }
+.lawCard.featured summary::after { color: #fff; }
+.lawCard summary h3 { margin: 14px 32px 10px 0; }
+
+@media (max-width: 640px) {
+  .lawCard { min-height: 0; padding: 20px; }
+  .lawCard p { margin-top: 12px; }
+  .sectorCard { min-height: 0; padding: 20px; }
+  .sectorCard p { line-height: 1.55; }
+}
+
+.serviceSummary {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 8px 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: default;
+}
+
+.serviceSummary .serviceNumber { grid-column: 1; }
+.serviceSummary h3 { grid-column: 1; margin: 8px 0 4px; }
+.serviceToggle { display: none; grid-column: 2; grid-row: 1 / span 2; font-size: 1.35rem; line-height: 1; }
+.serviceCardContent[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .heroVisual { min-height: 430px; }
+  .servicesGrid { gap: 10px; }
+  .serviceCard { padding: 0; border-radius: 8px; }
+  .serviceSummary { min-height: 62px; padding: 14px; cursor: pointer; }
+  .serviceSummary h3 { margin: 4px 0 0; font-size: 1.05rem; line-height: 1.2; }
+  .serviceSummary .serviceNumber { font-size: .75rem; }
+  .serviceToggle { display: block; }
+  .serviceCardContent { padding: 0 14px 15px; }
+  .serviceCardContent p { margin-bottom: 12px; font-size: .88rem; line-height: 1.5; }
+  .serviceCardContent a { font-size: .88rem; }
+
+  .frameworkShell { gap: 14px; }
+  .frameworkIntro { position: static; padding: 18px; border-radius: 8px; }
+  .frameworkIntro h2 { margin: 12px 0; font-size: 2.15rem; line-height: 1; }
+  .frameworkIntro p { font-size: .92rem; line-height: 1.58; }
+  .frameworkGrid { gap: 10px; }
+  .lawCard { padding: 16px; border-radius: 8px; }
+  .lawCard h3, .lawCard.featured h3 { font-size: 1.12rem; line-height: 1.18; }
+  .lawCard p { font-size: .88rem; line-height: 1.5; }
+
+  .sectorsShell { padding: 18px; border-radius: 8px; }
+  .splitHeader { gap: 14px; margin-bottom: 18px; }
+  .splitHeader h2 { margin: 10px 0; font-size: 2.15rem; line-height: 1; }
+  .splitHeader p { font-size: .9rem; line-height: 1.55; }
+  .sectorGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .sectorCard { padding: 14px; border-radius: 8px; }
+  .sectorCard h3 { font-size: 1rem; line-height: 1.18; }
+  .sectorCard p { font-size: .8rem; line-height: 1.42; }
+}
