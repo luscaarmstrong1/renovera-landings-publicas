@@ -268,15 +268,15 @@ function App() {
 
         <CombinedInsightSection
           id="projects-insight-title"
-          eyebrow="Execucao com rigor"
-          title="Vistoria, protecao e planejamento no mesmo projeto eletrico."
-          description="Da leitura em campo ao protocolo, cada definicao conversa com a proxima etapa. O estudo antecipa interfaces tecnicas para reduzir exigencias, retrabalho e atraso na implantacao."
-          points={["Inspecao de campo", "Projeto executivo", "Interface tecnica"]}
-          primaryAction={{ href: whatsappLink, label: "Solicitar analise tecnica", external: true, onClick: () => trackWhatsapp("combined_insight") }}
-          secondaryAction={{ href: "#solucoes", label: "Conhecer especialidades" }}
+          eyebrow="Execução com rigor"
+          title="Vistoria, proteção e planejamento no mesmo projeto elétrico."
+          description="Da leitura em campo ao protocolo, cada definição orienta a próxima etapa. O estudo antecipa interfaces técnicas para reduzir exigências, retrabalho e atrasos na implantação."
+          points={["Inspeção de campo", "Projeto executivo", "Interface técnica"]}
+          primaryAction={{ href: whatsappLink, label: "Solicitar análise técnica", external: true, onClick: () => trackWhatsapp("combined_insight") }}
+          secondaryAction={{ href: "#solucoes", label: "Ver especialidades técnicas" }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp 1600w`, alt: "Equipe tecnica realizando inspecao em infraestrutura eletrica", width: 1600, height: 900 },
-            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp 1600w`, alt: "Profissionais verificando paineis e planejamento de instalacao eletrica", width: 1600, height: 900 }
+            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-electrical-inspection.webp 1600w`, alt: "Equipe técnica realizando inspeção em infraestrutura elétrica", width: 1600, height: 900 },
+            { src: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning-960.webp 960w, ${import.meta.env.BASE_URL}images/official/projetos/projects-technical-planning.webp 1600w`, alt: "Profissionais verificando painéis e planejamento de instalação elétrica", width: 1600, height: 900 }
           ]}
         />
 

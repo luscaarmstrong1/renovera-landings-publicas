@@ -93,8 +93,8 @@ export const defaultSiteConfig: SiteConfig = {
     title: "Reduza sua conta de luz com energia solar.",
     subtitle:
       "Simule em poucos segundos a potência em kWp, quantidade de módulos, geração mensal, economia estimada, investimento aproximado e retorno simples. A Renovera transforma a simulação em projeto técnico, homologação e instalação.",
-    primaryButton: "Calcule a potência ideal do seu sistema fotovoltaico.",
-    secondaryButton: "Falar no WhatsApp",
+    primaryButton: "Calcular meu sistema solar",
+    secondaryButton: "Falar com um especialista",
     chips: [
       { title: "Pré-dimensionamento", description: "kWh → kWp e kWp → kWh" },
       { title: "Projeto completo", description: "homologação e implantação técnica" },
@@ -153,10 +153,10 @@ export const defaultSiteConfig: SiteConfig = {
   },
   contact: {
     eyebrow: "ANÁLISE COMERCIAL",
-    title: "Quer transformar sua conta de energia em economia recorrente?",
+    title: "Transforme sua conta de energia em um projeto solar dimensionado para o seu consumo.",
     subtitle:
       "Envie a simulação para a equipe Renovera e receba uma análise técnica para implantação do seu sistema fotovoltaico residencial, comercial, rural ou industrial.",
-    primaryButton: "Solicitar orçamento",
+    primaryButton: "Solicitar análise do projeto",
     secondaryButton: "Copiar resumo técnico",
   },
   footer: {

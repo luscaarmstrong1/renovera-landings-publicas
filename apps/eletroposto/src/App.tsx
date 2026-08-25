@@ -105,7 +105,7 @@ function App() {
           </nav>
 
           <a className="headerButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("header")}>
-            Solicitar estudo
+            Solicitar análise do projeto
           </a>
       </ProductHeader>
 
@@ -126,10 +126,10 @@ function App() {
 
               <div className="heroActions">
                 <a className="primaryButton" href="#roi" onClick={() => trackEvent("select_content", { product: "eletroposto", content_type: "roi_simulator", placement: "hero" })}>
-                  Simular retorno financeiro
+                  Simular a viabilidade do eletroposto
                 </a>
                 <a className="secondaryButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackWhatsapp("hero")}>
-                  Falar com a Renovera
+                  Falar com um especialista
                 </a>
               </div>
 
@@ -149,7 +149,7 @@ function App() {
               </div>
             </div>
 
-            <HeroArtworkFrame className="heroVisual" label="Painel de operacao de eletroposto">
+            <HeroArtworkFrame className="heroVisual" label="Painel de operação de eletroposto">
               <div className="dashboardCard">
                 <div className="dashboardTop">
                   <span>Renovera Energy Hub</span>
@@ -202,12 +202,12 @@ function App() {
           id="charge-insight-title"
           eyebrow="Infraestrutura com contexto"
           title="Recarga desenhada para a jornada, a frota e a demanda do local."
-          description="A decisao combina fluxo de veiculos, potencia, permanencia e operacao. O resultado e uma infraestrutura coerente com o negocio e preparada para crescer."
-          points={["Fluxo de veiculos", "Potencia adequada", "Operacao sustentavel"]}
-          primaryAction={{ href: "#roi", label: "Avaliar meu eletroposto" }}
+          description="A decisão considera fluxo de veículos, potência, permanência e operação. O resultado é uma infraestrutura coerente com o negócio e preparada para crescer."
+          points={["Fluxo de veículos", "Potência adequada", "Operação sustentável"]}
+          primaryAction={{ href: "#roi", label: "Simular a viabilidade do eletroposto" }}
           secondaryAction={{ href: whatsappLink, label: "Falar com especialista", external: true, onClick: () => trackWhatsapp("combined_insight") }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`, alt: "Frota corporativa eletrica conectada a carregadores", width: 1448, height: 1086 },
+            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`, alt: "Frota corporativa elétrica conectada a carregadores", width: 1448, height: 1086 },
             { src: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp 1448w`, alt: "Hub de recarga rapida em corredor rodoviario ao entardecer", width: 1448, height: 1086 }
           ]}
         />

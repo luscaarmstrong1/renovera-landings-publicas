@@ -498,10 +498,10 @@ function App() {
 
         <CombinedInsightSection
           id="solar-insight-title"
-          eyebrow="Do campo a decisao"
+          eyebrow="Do campo à decisão"
           title="Um projeto solar claro antes de cada investimento."
-          description="A leitura do local, o dimensionamento e o plano de implantacao entram no mesmo estudo. Assim, voce entende o contexto, valida as premissas e avanca com seguranca."
-          points={["Leitura do local", "Dimensionamento", "Plano de implantacao"]}
+          description="A leitura do local, o dimensionamento e o plano de implantação integram o mesmo estudo. Assim, você entende o contexto, valida as premissas e avança com segurança."
+          points={["Leitura do local", "Dimensionamento", "Plano de implantação"]}
           primaryAction={{ href: "#calculadora", label: "Simular meu sistema" }}
           secondaryAction={{ href: genericWhatsappLink, label: "Falar com especialista", external: true, onClick: () => trackGenericWhatsapp("combined_insight") }}
           images={[

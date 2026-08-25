@@ -199,14 +199,14 @@ function App() {
 
         <CombinedInsightSection
           id="regulatory-insight-title"
-          eyebrow="Evidencia e estrategia"
-          title="Uma defesa tecnica se sustenta em fatos, normas e contexto."
-          description="A vistoria, os documentos e os indicadores sao organizados em uma leitura independente para transformar uma negativa ou risco regulatorio em uma estrategia objetiva."
-          points={["Auditoria documental", "Premissas rastreaveis", "Defesa administrativa"]}
-          primaryAction={{ href: "#triagem", label: "Solicitar analise inicial" }}
-          secondaryAction={{ href: whatsappLink, label: "Falar com especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "combined_insight" }) }}
+          eyebrow="Evidência e estratégia"
+          title="Uma defesa técnica se sustenta em fatos, normas e contexto."
+          description="A vistoria, os documentos e os indicadores são organizados em uma leitura independente para transformar uma negativa ou risco regulatório em uma estratégia objetiva."
+          points={["Auditoria documental", "Premissas rastreáveis", "Defesa administrativa"]}
+          primaryAction={{ href: "#triagem", label: "Solicitar análise técnica" }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "combined_insight" }) }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe tecnica inspecionando paineis solares em uma cobertura", width: 1600, height: 900 },
+            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe técnica inspecionando painéis solares em uma cobertura", width: 1600, height: 900 },
             { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`, alt: "Especialista avaliando indicadores tecnicos de energia no escritorio", width: 1600, height: 900 }
           ]}
         />
@@ -278,7 +278,7 @@ function App() {
                 </label>
               </div>
 
-              <button className="formButton" type="submit">Solicitar análise de viabilidade jurídica</button>
+              <button className="formButton" type="submit">Solicitar análise técnica do caso</button>
               <a className="whatsButton" href={whatsappLink} target="_blank" rel="noreferrer" onClick={() => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "screening" })}>Prefiro enviar pelo WhatsApp</a>
 
               {submitted && (
@@ -409,7 +409,7 @@ function App() {
             </div>
             <div className="finalCtaActions">
               <a className="primaryButton" href="#triagem">Analisar minha negativa agora</a>
-              <a className="secondaryButton" href={whatsappLink} target="_blank">Falar com especialista</a>
+              <a className="secondaryButton" href={whatsappLink} target="_blank">Falar com um especialista</a>
             </div>
           </div>
         </section>
