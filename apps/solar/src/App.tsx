@@ -5,7 +5,7 @@ import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
 
 const WHATSAPP_NUMBER = "5519996514827";
-const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const CONFIG = {
   modulePowerWp: 585,
@@ -496,41 +496,19 @@ function App() {
           </div>
         </section>
 
-        <section className="visual-proof" aria-labelledby="solar-proof-title">
-          <div className="container visual-proof-grid">
-            <div className="visual-proof-copy">
-              <span className="pill">Engenharia em campo</span>
-              <h2 id="solar-proof-title">A análise começa no local e termina em uma decisão clara.</h2>
-              <p>Levantamento, leitura do telhado e premissas de geração entram no mesmo estudo preliminar, com espaço para validar o próximo passo.</p>
-              <div className="visual-proof-points">
-                <span>Leitura do local</span><span>Dimensionamento</span><span>Plano de implantação</span>
-              </div>
-            </div>
-            <div className="visual-proof-media">
-              <SectionImage
-                src={`${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation.webp`}
-                srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rooftop-installation.webp 1600w`}
-                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
-                alt="Técnico instalando módulos fotovoltaicos em cobertura urbana"
-                width="1600"
-                height="900"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="renovera-image-gallery-section" aria-labelledby="solar-context-title">
-          <div className="container">
-            <div className="renovera-image-gallery-section__heading">
-              <span className="pill">Cenários de projeto</span>
-              <h2 id="solar-context-title">Do campo à engenharia, o estudo considera o contexto da implantação.</h2>
-            </div>
-            <div className="renovera-image-gallery">
-              <SectionImage src={`${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Consultoria para sistema agrovoltaico em propriedade rural" width="1600" height="900" />
-              <SectionImage src={`${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Cliente acompanhando informações de um projeto solar residencial" width="1600" height="900" />
-            </div>
-          </div>
-        </section>
+        <CombinedInsightSection
+          id="solar-insight-title"
+          eyebrow="Do campo a decisao"
+          title="Um projeto solar claro antes de cada investimento."
+          description="A leitura do local, o dimensionamento e o plano de implantacao entram no mesmo estudo. Assim, voce entende o contexto, valida as premissas e avanca com seguranca."
+          points={["Leitura do local", "Dimensionamento", "Plano de implantacao"]}
+          primaryAction={{ href: "#calculadora", label: "Simular meu sistema" }}
+          secondaryAction={{ href: genericWhatsappLink, label: "Falar com especialista", external: true, onClick: () => trackGenericWhatsapp("combined_insight") }}
+          images={[
+            { src: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-rural-consulting.webp 1600w`, alt: "Consultoria para sistema agrovoltaico em propriedade rural", width: 1600, height: 900 },
+            { src: `${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering-960.webp 960w, ${import.meta.env.BASE_URL}images/official/solar/solar-project-engineering.webp 1600w`, alt: "Cliente acompanhando informacoes de um projeto solar residencial", width: 1600, height: 900 }
+          ]}
+        />
 
         <section className="calculator-section" id="calculadora">
           <div className="container">

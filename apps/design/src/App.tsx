@@ -6,7 +6,7 @@ import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from 
 const whatsappLink = buildWhatsappUrl(
   "Olá, quero uma análise regulatória da Renovera sobre um caso de energia."
 );
-const { FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SectionImage, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
+const { CombinedInsightSection, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
 
 const services = [
   {
@@ -197,39 +197,19 @@ function App() {
 
 
 
-        <section className="visual-proof" aria-labelledby="regulatory-proof-title">
-          <div className="container visual-proof-grid">
-            <div className="visual-proof-copy">
-              <span className="pill">Evidencia tecnica</span>
-              <h2 id="regulatory-proof-title">Uma defesa forte nasce da leitura conjunta de dados e documentos.</h2>
-              <p>A curadoria visual reforca o trabalho de auditoria, organizacao de evidencias e leitura independente do caso regulatorio.</p>
-              <div className="visual-proof-points"><span>Auditoria documental</span><span>Premissas rastreaveis</span><span>Defesa administrativa</span></div>
-            </div>
-            <div className="visual-proof-media">
-              <SectionImage
-                src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp`}
-                srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp 1600w`}
-                sizes="(max-width: 760px) calc(100vw - 32px), 50vw"
-                alt="Engenheiros analisando uma usina solar com informações técnicas"
-                width="1600"
-                height="900"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="renovera-image-gallery-section" aria-labelledby="regulatory-context-title">
-          <div className="container">
-            <div className="renovera-image-gallery-section__heading">
-              <span className="pill">Evidência e estratégia</span>
-              <h2 id="regulatory-context-title">Diagnóstico de campo e análise documental sustentam uma resposta técnica consistente.</h2>
-            </div>
-            <div className="renovera-image-gallery">
-              <SectionImage src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Equipe técnica inspecionando painéis solares em uma cobertura" width="1600" height="900" />
-              <SectionImage src={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`} srcSet={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`} sizes="(max-width: 760px) calc(100vw - 32px), 50vw" alt="Especialista avaliando indicadores técnicos de energia no escritório" width="1600" height="900" />
-            </div>
-          </div>
-        </section>
+        <CombinedInsightSection
+          id="regulatory-insight-title"
+          eyebrow="Evidencia e estrategia"
+          title="Uma defesa tecnica se sustenta em fatos, normas e contexto."
+          description="A vistoria, os documentos e os indicadores sao organizados em uma leitura independente para transformar uma negativa ou risco regulatorio em uma estrategia objetiva."
+          points={["Auditoria documental", "Premissas rastreaveis", "Defesa administrativa"]}
+          primaryAction={{ href: "#triagem", label: "Solicitar analise inicial" }}
+          secondaryAction={{ href: whatsappLink, label: "Falar com especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "combined_insight" }) }}
+          images={[
+            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe tecnica inspecionando paineis solares em uma cobertura", width: 1600, height: 900 },
+            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`, alt: "Especialista avaliando indicadores tecnicos de energia no escritorio", width: 1600, height: 900 }
+          ]}
+        />
 
         <section className="screening" id="triagem">
           <div className="container screeningGrid">
