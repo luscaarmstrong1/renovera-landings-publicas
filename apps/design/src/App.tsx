@@ -140,10 +140,9 @@ function App() {
           <div className="container heroGrid">
             <div className="heroContent">
               <span className="eyebrow">Inteligência técnica e segurança jurídica no setor elétrico</span>
-              <h1>Não aceite uma negativa de conexão sem uma defesa técnica.</h1>
+              <h1>Negativa de conexão exige defesa técnica.</h1>
               <p>
-                A Renovera atua na fronteira entre engenharia elétrica, regulação ANEEL e estratégia jurídica para proteger
-                ativos, destravar acessos e confrontar decisões arbitrárias de concessionárias.
+                A Renovera une engenharia elétrica, regulação ANEEL e estratégia jurídica para avaliar negativas de conexão e estruturar defesas técnicas.
               </p>
 
               <div className="heroActions">

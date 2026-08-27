@@ -116,13 +116,11 @@ function App() {
             <div className="heroContent">
               <span className="eyebrow">Renovera Charge</span>
 
-              <h1>Estruture seu eletroposto com a Renovera.</h1>
+              <h1>Infraestrutura de recarga preparada para operar e crescer.</h1>
 
               <p>
-                A Renovera desenvolve estudos técnicos e comerciais para
-                implantação de infraestrutura de recarga elétrica em rodovias,
-                postos de combustíveis, hotéis, resorts, condomínios, empresas,
-                shoppings e pontos estratégicos de alta circulação.
+                Estudos técnicos e comerciais para implantar recarga elétrica em
+                locais de permanência, circulação e operação de frotas.
               </p>
 
               <div className="heroActions">
@@ -136,16 +134,16 @@ function App() {
 
               <div className="heroStats">
                 <div>
-                  <strong>11 a 240 kW</strong>
+                  <strong>11-240 kW</strong>
                   <span>carregadores AC e DC</span>
                 </div>
                 <div>
                   <strong>ROI</strong>
-                  <span>receita, custo e margem</span>
+                  <span>receita e margem</span>
                 </div>
                 <div>
                   <strong>Projeto completo</strong>
-                  <span>viabilidade, elétrica e implantação</span>
+                  <span>estudo à implantação</span>
                 </div>
               </div>
             </div>

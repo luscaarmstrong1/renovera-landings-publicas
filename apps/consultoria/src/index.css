@@ -996,6 +996,8 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
   }
 }
 
+.checker-disclaimer { margin: 0; color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
+
 /* Product signature: field infrastructure with a concise engineering dossier. */
 .hero-visual {
   min-height: 570px;
@@ -1078,6 +1080,11 @@ input:focus, select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rg
 @media (max-width: 760px) { .visual-proof { padding: 64px 0; } .visual-proof-grid { grid-template-columns: 1fr; gap: 28px; } .visual-proof-media { grid-template-columns: 1fr; } .visual-proof-media img:last-child { transform: none; } }
 .brand span { font-size: .72rem; font-weight: 900; letter-spacing: .06em; white-space: nowrap; }
 @media (max-width: 760px) { .brand span { font-size: .6rem; } }
+
+@media (max-width: 760px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  .hero-visual { display: none; min-height: 0; margin: 0; }
+}
 
 .service-toggle { width: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: center; margin: 0 !important; color: inherit !important; text-align: left; }
 .service-toggle .icon-box { margin: 0; }

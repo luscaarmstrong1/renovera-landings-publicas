@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import LiveEditor from "./LiveEditor";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
+import aneelDistributors from "./data/aneel-distributors.json";
 
 const WHATSAPP_NUMBER = "5519996514827";
 
@@ -39,7 +40,7 @@ function WhatsAppIcon() {
   );
 }
 
-const concessionarias = ["CPFL", "Neoenergia Elektro", "Energisa", "Cemig", "EDP", "Outra"];
+const concessionarias = aneelDistributors.distributors.map((distributor) => distributor.displayName);
 const aclOptions = ["Sim", "Não", "Avaliar viabilidade"];
 
 const services = [
@@ -128,8 +129,10 @@ const process = [
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [utility, setUtility] = useState("CPFL");
+  const [utility, setUtility] = useState("");
   const [demand, setDemand] = useState("");
+  const [connection, setConnection] = useState("");
+  const [voltage, setVoltage] = useState("");
   const [acl, setAcl] = useState("Avaliar viabilidade");
   const [activeService, setActiveService] = useState(0);
 
@@ -167,9 +170,9 @@ function App() {
     }
 
     return {
-      label: "Pré-análise elegível",
+      label: "Baixa complexidade indicativa",
       title:
-        "Projeto elegível para diagnóstico inicial. A análise deve confirmar tensão de atendimento, padrão de entrada e exigências locais."
+        "Os dados sugerem uma avaliação inicial de tensão de atendimento, padrão de entrada e documentação do empreendimento."
     };
   }, [demand, parsedDemand]);
 
@@ -203,11 +206,9 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <span className="pill pill-dark">Renovera Engenharia | Projetos Elétricos</span>
-              <h1>Projeto elétrico preparado para aprovação, com método e autoridade técnica.</h1>
+              <h1>Projetos elétricos preparados para aprovação.</h1>
               <p>
-                Projetos de baixa, média e alta tensão, subestações, estudos de proteção,
-                padrões de entrada e viabilidade para consumidores do Grupo A que
-                precisam aprovar infraestrutura.
+                Projetos de baixa, média e alta tensão, subestações, proteção e padrões de entrada, estruturados para a análise técnica da distribuidora.
               </p>
 
               <div className="hero-actions">
@@ -350,11 +351,13 @@ function App() {
               <div className="checker-form">
                 <label>
                   <span>1. Selecione a concessionária local</span>
-                  <select id="projects-utility" name="utility" value={utility} onChange={(event) => setUtility(event.target.value)}>
+                  <input id="projects-utility" name="utility" value={utility} onChange={(event) => setUtility(event.target.value)} list="projects-utilities" role="combobox" aria-autocomplete="list" placeholder="Pesquise a distribuidora" autoComplete="off" />
+                  <datalist id="projects-utilities">
                     {concessionarias.map((item) => (
-                      <option key={item}>{item}</option>
+                      <option key={item} value={item} />
                     ))}
-                  </select>
+                  </datalist>
+                  <small>Não encontrou sua distribuidora? Informe o nome no campo para a análise inicial.</small>
                 </label>
 
                 <label>
@@ -369,8 +372,18 @@ function App() {
                   />
                 </label>
 
+                <label>
+                  <span>3. Tipo de ligação, se conhecido</span>
+                  <input value={connection} onChange={(event) => setConnection(event.target.value)} placeholder="Ex.: trifásica" />
+                </label>
+
+                <label>
+                  <span>4. Tensão de atendimento, se conhecida</span>
+                  <input value={voltage} onChange={(event) => setVoltage(event.target.value)} placeholder="Ex.: 13,8 kV" />
+                </label>
+
                 <div>
-                  <span className="field-title">3. O projeto envolve migração para o Mercado Livre?</span>
+                  <span className="field-title">5. O projeto envolve migração para o Mercado Livre?</span>
                   <div className="radio-grid">
                     {aclOptions.map((option) => (
                       <button
@@ -395,11 +408,14 @@ function App() {
                 <span>Pré-leitura técnica</span>
                 <DataBox label="Concessionária" value={utility} />
                 <DataBox label="Demanda" value={`${demand || "--"} kW`} />
+                <DataBox label="Ligação" value={connection || "Não informada"} />
+                <DataBox label="Tensão" value={voltage || "Não informada"} />
                 <DataBox label="ACL" value={acl} />
                 <div className="result-box">
                   <strong>{viability.label}</strong>
                   <p>{viability.title}</p>
                 </div>
+                <p className="checker-disclaimer">Pré-leitura indicativa. A solução definitiva depende da documentação do empreendimento, dos dados elétricos e da norma vigente da distribuidora.</p>
                 <button className="btn btn-outline full" onClick={() => openLeadModal("viability_secondary")}>
                   Solicitar validação completa
                   <Sparkles size={18} />

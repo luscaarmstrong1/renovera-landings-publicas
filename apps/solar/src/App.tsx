@@ -1,8 +1,10 @@
 import { createElement, useEffect, useMemo, useState } from "react";
+import { Building2, Factory, House, Sprout, Wrench } from "lucide-react";
 import { createRenoveraLandingUi } from "@renovera/landing-ui";
 import AdminEditor from "./AdminEditor";
 import { loadStoredSiteConfig, SiteConfig } from "./siteConfig";
 import { buildWhatsappUrl, RENOVERA_HOME, RENOVERA_SOLUTIONS, trackEvent } from "../../../shared/renovera";
+import ibgeLocalities from "./data/ibge-localities.json";
 
 const WHATSAPP_NUMBER = "5519996514827";
 const { CombinedInsightSection, FinalParallaxCta, FloatingWhatsApp, HeroArtworkFrame, PageProgress, ProductHeader, ScrollToTop, SiteFooter } = createRenoveraLandingUi({ createElement, useEffect, useState });
@@ -185,8 +187,8 @@ function App() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [uf, setUf] = useState<UfKey>("SP");
-  const [cityOptions, setCityOptions] = useState<string[]>(cidadesPorUf.SP);
-  const [city, setCity] = useState("São João da Boa Vista");
+  const [cityOptions, setCityOptions] = useState<string[]>(ibgeLocalities.states.find((state) => state.uf === "SP")?.cities.map((city) => city.name) ?? []);
+  const [city, setCity] = useState("");
   const [otherCity, setOtherCity] = useState("");
   const [citiesLoading, setCitiesLoading] = useState(false);
   const [roofType, setRoofType] = useState<RoofType>("Cerâmica");
@@ -197,7 +199,7 @@ function App() {
 
   const hsp = hspPorUf[uf];
   const minimumAvailability = disponibilidadePorTensao[tension];
-  const finalCity = city === "Outra cidade" ? otherCity.trim() : city;
+  const finalCity = city.trim();
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("pt-BR", {
@@ -310,7 +312,7 @@ function App() {
 
   useEffect(() => {
     let cancelled = false;
-    const fallbackCities = cidadesPorUf[uf];
+    const fallbackCities = ibgeLocalities.states.find((state) => state.uf === uf)?.cities.map((item) => item.name) ?? [];
 
     async function loadCitiesByUf() {
       setCitiesLoading(true);
@@ -319,15 +321,7 @@ function App() {
       setOtherCity("");
 
       try {
-        const response = await fetch(
-          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`
-        );
-
-        if (!response.ok) {
-          throw new Error("Falha ao buscar cidades");
-        }
-
-        const data: Array<{ nome: string }> = await response.json();
+        const data = ibgeLocalities.states.find((state) => state.uf === uf)?.cities.map((item) => ({ nome: item.name })) ?? [];
         const ibgeCities = data
           .map((item) => item.nome)
           .filter(Boolean)
@@ -337,12 +331,12 @@ function App() {
 
         if (!cancelled && fullList.length > 1) {
           setCityOptions(fullList);
-          setCity(fullList[0]);
+          setCity("");
         }
       } catch {
         if (!cancelled) {
           setCityOptions(fallbackCities);
-          setCity(fallbackCities[0] ?? "Outra cidade");
+          setCity("");
         }
       } finally {
         if (!cancelled) {
@@ -569,20 +563,14 @@ function App() {
 
                   <div className="input-group">
                     <label htmlFor="solar-city">Cidade</label>
-                    <select id="solar-city" name="city" value={city} onChange={(e) => setCity(e.target.value)} disabled={citiesLoading}>
+                    <input id="solar-city" name="city" value={city} onChange={(e) => setCity(e.target.value)} disabled={citiesLoading} list={`solar-cities-${uf}`} role="combobox" aria-autocomplete="list" aria-describedby="solar-city-help" placeholder="Digite para buscar a cidade" autoComplete="off" />
+                    <datalist id={`solar-cities-${uf}`}>
                       {cityOptions.map((item) => (
                         <option key={item} value={item}>{item}</option>
                       ))}
-                    </select>
-                    <small>{citiesLoading ? "Carregando cidades da UF..." : "Lista de municípios filtrada pela UF selecionada."}</small>
+                    </datalist>
+                    <small id="solar-city-help">{citiesLoading ? "Carregando municípios..." : "Pesquise e selecione um município da UF escolhida."}</small>
                   </div>
-
-                  {city === "Outra cidade" && (
-                    <div className="input-group full">
-                      <label htmlFor="solar-other-city">Informe a cidade</label>
-                      <input id="solar-other-city" name="otherCity" value={otherCity} onChange={(e) => setOtherCity(e.target.value)} placeholder="Digite o nome da cidade" />
-                    </div>
-                  )}
 
                   {mode === "consumo" ? (
                     <div className="input-group">
@@ -730,13 +718,16 @@ function App() {
             </div>
 
             <div className="applications-grid solar-applications">
-              {siteConfig.applications.cards.map((card) => (
+              {siteConfig.applications.cards.map((card) => {
+                const ProfileIcon = card.title === "Residencial" ? House : card.title === "Comercial" ? Building2 : card.title === "Industrial" ? Factory : card.title === "Rural" ? Sprout : Wrench;
+                return (
                 <div className="app-card" key={card.title}>
-                  <div className="app-icon">{card.icon}</div>
+                  <div className="app-icon"><ProfileIcon aria-hidden="true" /></div>
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

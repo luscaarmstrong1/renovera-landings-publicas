@@ -93,16 +93,7 @@ export function createRenoveraLandingUi({ createElement: h, useEffect, useState 
   }
 
   function ScrollToTop() {
-    const [visible, setVisible] = useState(false);
-    useEffect(() => {
-      const update = () => setVisible(window.scrollY > 560);
-      update();
-      window.addEventListener("scroll", update, { passive: true });
-      return () => window.removeEventListener("scroll", update);
-    }, []);
-    return h("button", { className: `renovera-scroll-top${visible ? " is-visible" : ""}`, type: "button", "aria-label": "Voltar ao topo", title: "Voltar ao topo", onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
-      h("svg", { "aria-hidden": "true", width: 19, height: 19, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" }, h("path", { d: "m18 15-6-6-6 6" }), h("path", { d: "M12 21V9" }))
-    );
+    return null;
   }
 
   function MediaComposition({ className = "", children }) {

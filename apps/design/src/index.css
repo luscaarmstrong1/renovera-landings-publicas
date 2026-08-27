@@ -133,7 +133,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 64px 0 76px;
+  padding: 48px 0 56px;
   background:
     radial-gradient(circle at 78% 18%, rgba(228, 183, 42, 0.34), transparent 34%),
     linear-gradient(108deg, #00351d 0%, #075c32 52%, #8ba98c 100%);
@@ -188,7 +188,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .heroContent h1 {
   margin: 20px 0;
   max-width: 880px;
-  font-size: clamp(3.2rem, 6.4vw, 6.65rem);
+  font-size: clamp(3rem, 5.6vw, 5.65rem);
   line-height: 0.9;
   letter-spacing: 0;
 }
@@ -882,4 +882,9 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
   .sectorCard { padding: 14px; border-radius: 8px; }
   .sectorCard h3 { font-size: 1rem; line-height: 1.18; }
   .sectorCard p { font-size: .8rem; line-height: 1.42; }
+}
+
+@media (max-width: 760px) {
+  .heroGrid { grid-template-columns: 1fr; gap: 0; }
+  .heroVisual { display: none; min-height: 0; margin: 0; }
 }
