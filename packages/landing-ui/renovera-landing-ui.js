@@ -184,7 +184,8 @@ export function createRenoveraLandingUi({ createElement: h, useEffect, useState 
         const rect = section.getBoundingClientRect();
         const travel = window.innerHeight + rect.height;
         const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / travel));
-        const amplitude = window.innerWidth <= 760 ? 60 : 100;
+        const viewportWidth = window.innerWidth;
+        const amplitude = viewportWidth <= 760 ? 48 : viewportWidth <= 1024 ? 76 : 110;
         background.style.setProperty("--renovera-parallax-y", `${(progress - 0.5) * amplitude}px`);
       };
       const requestRender = () => {

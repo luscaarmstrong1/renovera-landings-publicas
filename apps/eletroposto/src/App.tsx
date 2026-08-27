@@ -208,8 +208,7 @@ function App() {
           primaryAction={{ href: "#roi", label: "Simular viabilidade do eletroposto" }}
           secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackWhatsapp("combined_insight") }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`, alt: "Frota corporativa elétrica conectada a carregadores", width: 1448, height: 1086 },
-            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-highway-hub.webp 1448w`, alt: "Hub de recarga rápida em corredor rodoviário ao entardecer", width: 1448, height: 1086 }
+            { src: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet-960.webp 960w, ${import.meta.env.BASE_URL}images/official/charge/charge-corporate-fleet.webp 1448w`, alt: "Frota corporativa elétrica conectada a carregadores", width: 1448, height: 1086 }
           ]}
         />
 

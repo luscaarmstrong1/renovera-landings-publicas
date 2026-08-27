@@ -219,8 +219,7 @@ function App() {
           primaryAction={{ href: "#triagem", label: "Solicitar análise técnica do caso" }}
           secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "combined_insight" }) }}
           images={[
-            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe técnica inspecionando painéis solares em uma cobertura", width: 1600, height: 900 },
-            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp 1600w`, alt: "Especialista avaliando indicadores técnicos de energia no escritório", width: 1600, height: 900 }
+            { src: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp`, srcSet: `${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection-960.webp 960w, ${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-rooftop-inspection.webp 1600w`, alt: "Equipe técnica inspecionando painéis solares em uma cobertura", width: 1600, height: 900 }
           ]}
         />
 
@@ -426,7 +425,7 @@ function App() {
           eyebrow="Defesa antes do prejuízo"
           title="Antes de aceitar a negativa, solicite uma segunda leitura técnica."
           description="Envie o parecer da concessionária. A Renovera verifica a fundamentação, as premissas do estudo e a possibilidade de contestação administrativa."
-          imageSrc={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-engineers-analysis.webp`}
+          imageSrc={`${import.meta.env.BASE_URL}images/official/regulatoria/regulatoria-energy-office.webp`}
           imagePosition="center 52%"
           primaryAction={{ href: "#triagem", label: "Solicitar análise técnica do caso", onClick: () => trackEvent("select_content", { product: "regulatoria", content_type: "screening", placement: "final_cta" }) }}
           secondaryAction={{ href: whatsappLink, label: "Falar com um especialista", external: true, onClick: () => trackEvent("contact", { product: "regulatoria", channel: "whatsapp", placement: "final_cta" }) }}
