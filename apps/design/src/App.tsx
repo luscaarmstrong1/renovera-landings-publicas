@@ -30,6 +30,13 @@ const services = [
     title: "Riscos Operacionais e Contratos de Energia",
     text: "Análise técnica e jurídica de contratos do Grupo A, demanda contratada, exposição tarifária, multas, energia reativa e riscos de infraestrutura.",
     cta: "Mapear risco do contrato"
+  },
+  {
+    number: "05",
+    title: "Aumento à revelia",
+    text: "Análise de aumentos de carga, demanda e alterações cadastrais ou contratuais executados sem solicitação, autorização ou anuência documental claramente identificada.",
+    cta: "Analisar alteração da unidade",
+    points: ["Solicitação original", "Histórico cadastral", "Protocolos e documentos técnicos"]
   }
 ];
 
@@ -74,6 +81,8 @@ function App() {
         ? "avaliar aderência normativa, exigências técnicas e proporcionalidade da reprovação"
         : restriction === "Demanda Incompatível"
         ? "revisar demanda contratada, premissas de carga e impactos financeiros"
+        : restriction === "Aumento à revelia"
+        ? "verificar a origem da alteração, a documentação disponível, a regularidade do procedimento e os protocolos da distribuidora"
         : "identificar a natureza regulatória da restrição e a estratégia de contestação";
 
     return { score: capped, level, thesis };
@@ -266,6 +275,7 @@ function App() {
                     <option>Inversão de Fluxo</option>
                     <option>Reprovação de Padrão</option>
                     <option>Demanda Incompatível</option>
+                    <option>Aumento à revelia</option>
                     <option>Outra</option>
                   </select>
                 </label>
@@ -329,6 +339,11 @@ function App() {
                   <span>{service.number}</span>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
+                  {service.points && (
+                    <ul className="servicePoints" aria-label={`Pontos de análise para ${service.title}`}>
+                      {service.points.map((point) => <li key={point}>{point}</li>)}
+                    </ul>
+                  )}
                   <a href="#triagem">{service.cta} →</a>
                 </article>
               ))}

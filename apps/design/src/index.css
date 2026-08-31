@@ -336,6 +336,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .serviceCard h3 { margin: 16px 0 12px; font-size: 1.65rem; line-height: 1.05; letter-spacing: -0.04em; }
 .serviceCard p { margin: 0 0 22px; color: var(--muted); line-height: 1.68; }
 .serviceCard a { color: var(--green-800); font-weight: 950; }
+.serviceCard:last-child { grid-column: span 2; }
+.servicePoints { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: -4px 0 22px; list-style: none; }
+.servicePoints li { padding: 6px 9px; border: 1px solid var(--border); border-radius: 999px; color: var(--green-800); font-size: 0.8rem; font-weight: 800; }
 
 .defense { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .defenseGrid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 34px; align-items: center; }
@@ -619,6 +622,7 @@ input:focus, select:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgb
   .heroVisual { min-height: 520px; }
   .authorityGrid, .heroStats { grid-template-columns: 1fr; }
   .servicesGrid, .compareBox, .frameworkGrid, .sectorGrid, .formGrid, .frameworkShell, .finalCtaBox { grid-template-columns: 1fr; }
+  .serviceCard:last-child { grid-column: auto; }
   .lawCard.featured { grid-row: auto; grid-column: auto; }
   .footerGrid { grid-template-columns: 1fr; }
   .finalCtaActions { justify-content: flex-start; min-width: 0; }

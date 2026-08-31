@@ -35,7 +35,8 @@ function run(command, args, options = {}) {
 }
 
 for (const app of apps) {
-  const base = app === "portal" ? `${prefix}/`.replace(/\/{2,}/g, "/") : `${prefix}/${app}/`.replace(/\/{2,}/g, "/");
+  const publicSlug = app === "design" ? "regulatoria" : app;
+  const base = app === "portal" ? `${prefix}/`.replace(/\/{2,}/g, "/") : `${prefix}/${publicSlug}/`.replace(/\/{2,}/g, "/");
   await run(process.execPath, [viteBin, "build", `--base=${base}`], {
     cwd: path.join(root, "apps", app),
     env: { ...process.env, NODE_PATH: path.join(root, "node_modules") }

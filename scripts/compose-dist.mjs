@@ -16,7 +16,7 @@ function normalizePrefix(value) {
 
 const portalSource = path.join(root, "apps", "portal", "dist");
 const landingPages = [
-  { slug: "design", source: path.join(root, "apps", "design", "dist") },
+  { slug: "regulatoria", source: path.join(root, "apps", "design", "dist") },
   { slug: "consultoria", source: path.join(root, "apps", "consultoria", "dist") },
   { slug: "solar", source: path.join(root, "apps", "solar", "dist") },
   { slug: "eletroposto", source: path.join(root, "apps", "eletroposto", "dist") }
@@ -37,6 +37,14 @@ for (const page of landingPages) {
   }
   await cp(page.source, path.join(dist, page.slug), { recursive: true });
 }
+
+const legacyDesignDir = path.join(dist, "design");
+await mkdir(legacyDesignDir, { recursive: true });
+await writeFile(
+  path.join(legacyDesignDir, "index.html"),
+  `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../regulatoria/"><link rel="canonical" href="https://luscaarmstrong1.github.io/renovera-landings-publicas/regulatoria/"><title>Renovera Regulatoria</title><script>location.replace("../regulatoria/" + location.search + location.hash);</script></head><body><a href="../regulatoria/">Continuar para Renovera Regulatoria</a></body></html>`,
+  "utf8"
+);
 
 const portalIndex = path.join(dist, "index.html");
 if (existsSync(portalIndex)) {
